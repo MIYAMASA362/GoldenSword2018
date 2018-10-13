@@ -41,10 +41,10 @@ void Render2D_Porigon(const Transform2* pTransform2)
 
 	Vertex2D Porigon[4] =
 	{
-		{ D3DXVECTOR4(pTransform2->Position.x - width,pTransform2->Position.y - height,0.1f,1.0f),pTransform2->Color },
-		{ D3DXVECTOR4(pTransform2->Position.x + width,pTransform2->Position.y - height,0.1f,1.0f),pTransform2->Color },
-		{ D3DXVECTOR4(pTransform2->Position.x - width,pTransform2->Position.y + height,0.1f,1.0f),pTransform2->Color },
-		{ D3DXVECTOR4(pTransform2->Position.x + width,pTransform2->Position.y + height,0.1f,1.0f),pTransform2->Color },
+		{ D3DXVECTOR4(pTransform2->Position.x - width,pTransform2->Position.y - height,0.0f,1.0f),pTransform2->Color },
+		{ D3DXVECTOR4(pTransform2->Position.x + width,pTransform2->Position.y - height,0.0f,1.0f),pTransform2->Color },
+		{ D3DXVECTOR4(pTransform2->Position.x - width,pTransform2->Position.y + height,0.0f,1.0f),pTransform2->Color },
+		{ D3DXVECTOR4(pTransform2->Position.x + width,pTransform2->Position.y + height,0.0f,1.0f),pTransform2->Color },
 	};
 
 	g_pD3DDevice->SetFVF(FVF_VERTEX2D);
@@ -75,7 +75,7 @@ void Render2D_Porigon_Circle(const Transform2* pTransform2,float radius)
 			Porigon[i].position.y = sinf((i - 1) * angle) * radius + pTransform2->Position.y;
 		}
 
-		Porigon[i].position.z = 1.0f;
+		Porigon[i].position.z = 0.0f;
 		Porigon[i].position.w = 1.0f;
 		Porigon[i].color = pTransform2->Color;
 	}
@@ -128,10 +128,10 @@ void Render2D_Porigon_Rotate(const Transform2* pTransform2)
 
 	Vertex2D Porigon[4] =
 	{
-		{ D3DXVECTOR4(px[0] + pTransform2->Position.x + width - 0.5f, py[0] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color},
-		{ D3DXVECTOR4(px[1] + pTransform2->Position.x + width - 0.5f, py[1] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color},
-		{ D3DXVECTOR4(px[2] + pTransform2->Position.x + width - 0.5f, py[2] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color},
-		{ D3DXVECTOR4(px[3] + pTransform2->Position.x + width - 0.5f, py[3] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color}
+		{ D3DXVECTOR4(px[0] + pTransform2->Position.x + width - 0.5f, py[0] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color},
+		{ D3DXVECTOR4(px[1] + pTransform2->Position.x + width - 0.5f, py[1] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color},
+		{ D3DXVECTOR4(px[2] + pTransform2->Position.x + width - 0.5f, py[2] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color},
+		{ D3DXVECTOR4(px[3] + pTransform2->Position.x + width - 0.5f, py[3] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color}
 	};
 
 	g_pD3DDevice->SetFVF(FVF_VERTEX2D);
@@ -150,10 +150,10 @@ void Render2D_Texture_Size(const Transform2* pTransform2,Texture* pTexture)
 
 	TexVertex2D Sprite[4] = 
 	{
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,0.0f) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,0.0f) },
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,1.0f) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,1.0f) }
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,0.0f) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,0.0f) },
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,1.0f) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,1.0f) }
 	};
 
 	g_pD3DDevice->SetFVF(FVF_TEXVERTEX2D);
@@ -172,10 +172,10 @@ void Render2D_Texture_Fill(Transform2* pTransform2,Texture* pTexture)
 
 	TexVertex2D Sprite[4] =
 	{
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,0.0f) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,0.0f) },
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,1.0f) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,1.0f) }
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,0.0f) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,0.0f) },
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(0.0f,1.0f) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f),pTransform2->Color,D3DXVECTOR2(1.0f,1.0f) }
 	};
 
 	g_pD3DDevice->SetFVF(FVF_TEXVERTEX2D);
@@ -202,10 +202,10 @@ void Render2D_Texture_Clip(Transform2* pTransform2,Texture* pTexture)
 
 	TexVertex2D Sprite[4] =
 	{
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v0) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v0) },
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v1) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v1) }
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v0) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v0) },
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v1) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v1) }
 	};
 
 	g_pD3DDevice->SetFVF(FVF_TEXVERTEX2D);
@@ -232,10 +232,10 @@ void Render2D_Sprite(Transform2* pTransform2,Texture* pTexture)
 
 	TexVertex2D Sprite[4] =
 	{
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v0) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v0) },
-		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v1) },
-		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 1.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v1) }
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v0) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y - height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v0) },
+		{ D3DXVECTOR4(pTransform2->Position.x - width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u0,v1) },
+		{ D3DXVECTOR4(pTransform2->Position.x + width - 0.5f, pTransform2->Position.y + height - 0.5f, 0.0f,1.0f), pTransform2->Color, D3DXVECTOR2(u1,v1) }
 	};
 
 	g_pD3DDevice->SetFVF(FVF_TEXVERTEX2D);
@@ -282,10 +282,10 @@ void Render2D_Sprite_Rotate(Transform2* pTransform2,Texture* pTexture)
 
 	TexVertex2D Sprite[4] =
 	{
-		{ D3DXVECTOR4(px[0] + pTransform2->Position.x + width - 0.5f, py[0] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u0,v0) },
-		{ D3DXVECTOR4(px[1] + pTransform2->Position.x + width - 0.5f, py[1] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u1,v0) },
-		{ D3DXVECTOR4(px[2] + pTransform2->Position.x + width - 0.5f, py[2] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u0,v1) },
-		{ D3DXVECTOR4(px[3] + pTransform2->Position.x + width - 0.5f, py[3] + pTransform2->Position.y + height - 0.5f,	1.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u1,v1) }
+		{ D3DXVECTOR4(px[0] + pTransform2->Position.x + width - 0.5f, py[0] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u0,v0) },
+		{ D3DXVECTOR4(px[1] + pTransform2->Position.x + width - 0.5f, py[1] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u1,v0) },
+		{ D3DXVECTOR4(px[2] + pTransform2->Position.x + width - 0.5f, py[2] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u0,v1) },
+		{ D3DXVECTOR4(px[3] + pTransform2->Position.x + width - 0.5f, py[3] + pTransform2->Position.y + height - 0.5f,	0.0f,1.0f),	pTransform2->Color,	D3DXVECTOR2(u1,v1) }
 	};
 
 	g_pD3DDevice->SetFVF(FVF_TEXVERTEX2D);

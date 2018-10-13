@@ -77,6 +77,7 @@ void Grid_Render()
 	D3DXMatrixIdentity(&mtxWorld);								//’PˆÊs—ñ‚ÌÝ’è
 	System_GetDevice()->SetTransform(D3DTS_WORLD, &mtxWorld);	//ƒfƒoƒCƒX‚Ö“o˜^
 
+	System_GetDevice()->SetRenderState(D3DRS_LIGHTING,NULL);
 	//------------------------------------
 	//	•`‰æ
 	//------------------------------------
