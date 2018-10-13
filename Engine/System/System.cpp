@@ -115,16 +115,23 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		}
 		else
 		{
+	//--------------------------
+	//	前更新
+	//--------------------------
 			Device_Update();
-			Main_UpdateBegin();	//前更新
+			Main_UpdateBegin();
+
+	//--------------------------
+	//	描画
+	//--------------------------
 
 			g_pD3DDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, BG_COLOR, 1.0f, 0);
 			g_pD3DDevice->BeginScene();
 
-			Main_Render();		//描画
+			Main_Render();
 
 	//--------------------------
-	//	デバッグ
+	//	デバッグ　描画
 	//--------------------------
 #if defined(INPUT_H) && defined(DEBUG_KEY_ENABLE)
 
@@ -149,7 +156,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 			g_pD3DDevice->EndScene();
 			g_pD3DDevice->Present(NULL, NULL, NULL, NULL);
 
-			Main_UpdateEnd();	//後更新
+	//--------------------------
+	//	後更新
+	//--------------------------
+
+			Main_UpdateEnd();
 
 		}
 	} while (g_Msg.message != WM_QUIT);
@@ -166,6 +177,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 //===============================================
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	int i = 0;
 	switch (uMsg) {
 	case WM_KEYDOWN:
 		if (wParam == VK_ESCAPE) {
@@ -184,6 +196,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		//WM_QUIT　というメッセージを送る
 		PostQuitMessage(0);
 		return 0;
+
+	default:
+		break;
 	}
 
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -230,6 +245,7 @@ void System_Initialize()
 	g_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);				//半透明処理をON
 	g_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);	//背景DSETのブレンド設定
 	g_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	g_pD3DDevice->SetRenderState(D3DRS_ZENABLE, TRUE);						//深度を適用
 
 	g_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 	g_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE);
@@ -238,6 +254,8 @@ void System_Initialize()
 	g_pD3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
 	g_pD3DDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, D3DTEXF_LINEAR);
 	g_pD3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+
+
 
 	//------------------------------------
 	//	入力処理　	初期化

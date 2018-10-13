@@ -15,7 +15,7 @@
 //-----------------------------------------------
 //	行列クラス
 //-----------------------------------------------
-class MTEXTRANSFORM
+class MtxFormat
 {
 private:
 	
@@ -23,9 +23,10 @@ public:
 	D3DXMATRIX MtxWorld;					//ワールド変換行列
 	D3DXMATRIX MtxTransform;				//位置
 	D3DXMATRIX MtxRotation;					//回転
-	MTEXTRANSFORM(void);					//初期化
+	MtxFormat(void);						//初期化
 	void SetIdentity(void);					//全部単位化
 	void SetIdentity(D3DXMATRIX* ReSetMtx);	//指定単位化
+	void SetMatrix(void);					//デバイスへ登録
 };
 
 //===============================================

@@ -94,7 +94,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\PCUser\Desktop\DX_Main\Source;C:\Users\PCUser\Desktop\DX_Main\Engine\UnImplemented;C:\Users\PCUser\Desktop\DX_Main\Engine\Geometry;C:\Users\PCUser\Desktop\DX_Main;C:\Users\PCUser\Desktop\DX_Main\Engine\Class;C:\Users\PCUser\Desktop\DX_Main\Engine\Internal;C:\Users\PCUser\Desktop\DX_Main\Engine\System;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(SolutionDir)Engine\UnImplemented;$(SolutionDir)Engine\Geometry;$(SolutionDir);$(SolutionDir)Engine\Class;$(SolutionDir)Engine\Internal;$(SolutionDir)Engine\System;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,7 +125,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\PCUser\Desktop\DX_Main\Source;C:\Users\PCUser\Desktop\DX_Main\Engine\UnImplemented;C:\Users\PCUser\Desktop\DX_Main\Engine\Geometry;C:\Users\PCUser\Desktop\DX_Main;C:\Users\PCUser\Desktop\DX_Main\Engine\Class;C:\Users\PCUser\Desktop\DX_Main\Engine\Internal;C:\Users\PCUser\Desktop\DX_Main\Engine\System;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(SolutionDir)Engine\UnImplemented;$(SolutionDir)Engine\Geometry;$(SolutionDir);$(SolutionDir)Engine\Class;$(SolutionDir)Engine\Internal;$(SolutionDir)Engine\System;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -170,11 +170,15 @@
     <ClCompile Include="Engine\Internal\Texture.cpp" />
     <ClCompile Include="Engine\System\Debug_Circle.cpp" />
     <ClCompile Include="Engine\System\Debug_font.cpp" />
+    <ClCompile Include="Engine\System\Dualshock4.c" />
+    <ClCompile Include="Engine\System\Dualshock4Private.c" />
     <ClCompile Include="Engine\System\FileData.cpp" />
     <ClCompile Include="Engine\System\Input.cpp" />
     <ClCompile Include="Engine\System\sound.cpp" />
     <ClCompile Include="Engine\System\System.cpp" />
     <ClCompile Include="Engine\System\system_timer.cpp" />
+    <ClCompile Include="Engine\UnImplemented\Camera.cpp" />
+    <ClCompile Include="Engine\UnImplemented\Lighting.cpp" />
     <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp" />
     <ClCompile Include="Source\main.cpp" />
   </ItemGroup>
@@ -196,14 +200,21 @@
     <ClInclude Include="Engine\Internal\Texture.h" />
     <ClInclude Include="Engine\System\Debug_Circle.h" />
     <ClInclude Include="Engine\System\Debug_font.h" />
+    <ClInclude Include="Engine\System\Dualshock4.h" />
+    <ClInclude Include="Engine\System\Dualshock4.hpp" />
+    <ClInclude Include="Engine\System\Dualshock4Private.h" />
     <ClInclude Include="Engine\System\FileData.h" />
     <ClInclude Include="Engine\System\input.h" />
     <ClInclude Include="Engine\System\sound.h" />
     <ClInclude Include="Engine\System\System.h" />
     <ClInclude Include="Engine\System\system_timer.h" />
+    <ClInclude Include="Engine\UnImplemented\Lighting.h" />
     <ClInclude Include="Engine\UnImplemented\MtxTransform.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\System\Dualshock4.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,6 +12,7 @@
 
 #include"Cube.h"
 #include"MtxTransform.h"
+#include"Lighting.h"
 
 #include"CUI.h"
 
@@ -37,6 +38,7 @@ static UI uiSprite(
 void Main_Initialize(void)
 {
 	MtxTransformation_Initialize();
+	Lighting_Initialize();
 
 	uiSprite = uiSprite;
 }

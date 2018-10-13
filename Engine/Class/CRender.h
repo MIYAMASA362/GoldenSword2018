@@ -51,8 +51,9 @@ class Render
 private:
 
 public:
-	Transform* pTransform;
-	Texture* pTexture;
+	Transform*	pTransform;
+	Texture*	pTexture;
+
 
 	//コンストラクタ
 	Render();

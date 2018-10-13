@@ -9,6 +9,8 @@
 #include"input.h"
 #include"Camera.h"
 #include"Grid.h"
+#include"Cube.h"
+#include"Lighting.h"
 
 //===============================================
 //	マクロ定義
@@ -21,15 +23,41 @@
 //===============================================
 //	グローバル変数
 //===============================================
-static D3DXVECTOR3 CameraPos(CAMERA_POS);		//カメラ位置
-static D3DXVECTOR3 CameraAt(CAMERA_AT);			//カメラ注視点
-static D3DXVECTOR3 CameraUp(CAMERA_UP);			//カメラ上
+static D3DXVECTOR3	g_CameraPos(CAMERA_POS);	//カメラ位置
+static D3DXVECTOR3	g_CameraAt(CAMERA_AT);		//カメラ注視点
+static float		g_CameraFov = CAMERA_FOV;	//カメラ画角
+
+static float		g_CameraAtDistance;			//注視点までの距離
+
+static D3DXVECTOR3	g_CameraFront;				//カメラ前
+static D3DXVECTOR3	g_CameraRight;				//カメラ右
+static D3DXVECTOR3	g_CameraUp;					//カメラ上
 
 //===============================================
 //	初期化
 //===============================================
 void MtxTransformation_Initialize()
 {
+	g_CameraPos = CAMERA_POS;
+	g_CameraAt  = CAMERA_AT;
+	g_CameraUp  = CAMERA_UP;
+	g_CameraFov = CAMERA_FOV;
+	g_CameraAtDistance = 3.0f;
+
+	//前
+	g_CameraFront = D3DXVECTOR3(0.0f,-0.5f,1.0f);		
+	D3DXVec3Normalize(&g_CameraFront,&g_CameraFront);
+
+	g_CameraUp = D3DXVECTOR3(0.0f,1.0f,0.0f);			
+	
+	//右
+	D3DXVec3Cross(&g_CameraRight,&g_CameraFront,&g_CameraUp);	
+	D3DXVec3Normalize(&g_CameraRight,&g_CameraRight);
+
+	//上
+	//D3DXVec3Cross(&g_CameraUp, &g_CameraRight, &g_CameraFront);
+	//D3DXVec3Normalize(&g_CameraUp,&g_CameraUp);
+
 	Grid_Initialize();
 }
 
@@ -38,7 +66,51 @@ void MtxTransformation_Initialize()
 //===============================================
 void MtxTransformation_Update()
 {
+	if (Mouse_IsRightDown())
+	{
+		D3DXMATRIX mtxRotation;
+		D3DXMatrixRotationY(&mtxRotation, Mouse_IsAccelerationX() * 0.001f);
+		D3DXVec3TransformNormal(&g_CameraFront, &g_CameraFront, &mtxRotation);	//ベクトル座標変換
+		D3DXVec3TransformNormal(&g_CameraRight, &g_CameraRight, &mtxRotation);
+		D3DXMatrixIdentity(&mtxRotation);
+		D3DXMatrixRotationAxis(&mtxRotation,&g_CameraRight,Mouse_IsAccelerationY() * -0.001f);
+		D3DXVec3TransformNormal(&g_CameraFront, &g_CameraFront, &mtxRotation);	//ベクトル座標変換
+		D3DXVec3TransformNormal(&g_CameraRight, &g_CameraRight, &mtxRotation);
+	}
 
+	//------------------------------------
+	//	カメラ
+	//------------------------------------
+	g_CameraAt.x = g_CameraFront.x * g_CameraAtDistance + g_CameraPos.x;
+	g_CameraAt.y = g_CameraFront.y * g_CameraAtDistance + g_CameraPos.y;
+	g_CameraAt.z = g_CameraFront.z * g_CameraAtDistance + g_CameraPos.z;
+
+	D3DXVECTOR3 front = g_CameraFront;
+	front.y = 0;
+	D3DXVECTOR3 right = g_CameraRight;
+	right.y = 0;
+
+	if(Keyboard_IsPress(DIK_W))
+	{
+		g_CameraPos += front * 0.05f;
+	}
+
+	if(Keyboard_IsPress(DIK_S))
+	{
+		g_CameraPos -= front * 0.05f;
+	}
+
+	if(Keyboard_IsPress(DIK_A))
+	{
+		g_CameraPos += right * 0.05f;
+	}
+
+	if(Keyboard_IsPress(DIK_D))
+	{
+		g_CameraPos -= right * 0.05f;
+	}
+
+	/*
 	//------------------------------------
 	//	カメラ
 	//------------------------------------
@@ -49,8 +121,8 @@ void MtxTransformation_Update()
 		//-----------------------------------
 		if(Mouse_IsCenterDown())
 		{
-			CameraAt  += D3DXVECTOR3(Mouse_IsAccelerationX() *0.01f,	Mouse_IsAccelerationY() * 0.01f, Mouse_IsAccelerationZ() * 0.01f);
-			CameraPos += D3DXVECTOR3(Mouse_IsAccelerationX() * 0.01f,	Mouse_IsAccelerationY() * 0.01f, Mouse_IsAccelerationZ() * 0.01f);
+			g_CameraAt  += D3DXVECTOR3(Mouse_IsAccelerationX() * 0.01f,	Mouse_IsAccelerationY() * 0.01f, Mouse_IsAccelerationZ() * 0.01f);
+			g_CameraPos += D3DXVECTOR3(Mouse_IsAccelerationX() * 0.01f,	Mouse_IsAccelerationY() * 0.01f, Mouse_IsAccelerationZ() * 0.01f);
 		}
 	}
 	else if (Mouse_IsCenterDown())
@@ -59,14 +131,14 @@ void MtxTransformation_Update()
 		//	カメラ移動
 		//-----------------------------------
 		D3DXVECTOR3 Distance;
-		Distance = CameraPos - CameraAt;
+		Distance = g_CameraPos - g_CameraAt;
 		float Angles = D3DXToRadian(Mouse_IsAccelerationX() * 0.1f);
-		CameraPos.x = CameraAt.x + (Distance.x * cosf(Angles) - Distance.z * sinf(Angles));
-		CameraPos.z = CameraAt.z + (Distance.x * sinf(Angles) + Distance.z * cosf(Angles));
+		g_CameraPos.x = g_CameraAt.x + (Distance.x * cosf(Angles) - Distance.z * sinf(Angles));
+		g_CameraPos.z = g_CameraAt.z + (Distance.x * sinf(Angles) + Distance.z * cosf(Angles));
 		
-		CameraPos.y += Mouse_IsAccelerationY() * 0.05f;
+		g_CameraPos.y += Mouse_IsAccelerationY() * 0.05f;
 	}
-
+	*/
 }
 
 //===============================================
@@ -80,17 +152,15 @@ void MtxTransformation_Render()
 	//	ビュー変換行列
 	//------------------------------------
 	D3DXMATRIX mtxView;							//ビュー変換行列
-	D3DXMatrixLookAtLH(&mtxView, &CameraPos, &CameraAt, &CameraUp);	//変換
+	D3DXMatrixLookAtLH(&mtxView, &g_CameraPos, &g_CameraAt, &g_CameraUp);	//変換
 	System_GetDevice()->SetTransform(D3DTS_VIEW, &mtxView);		//デバイスへ登録
 
 	//------------------------------------
 	//	プロジェクション変換行列
 	//------------------------------------
 	D3DXMATRIX mtxProjection;		//プロジェクション変換行列
-	D3DXMatrixPerspectiveFovLH(&mtxProjection, D3DXToRadian(60), (float)WINDOWSCREEN_WIDTH / WINDOWSCREEN_HEIGHT, 0.1f, 100.0f);	//Fovは画角　変換
+	D3DXMatrixPerspectiveFovLH(&mtxProjection, g_CameraFov, SCREEN_ASPECT, CAMERA_NEAR, CAMERA_WAR);	//Fovは画角　変換
 	System_GetDevice()->SetTransform(D3DTS_PROJECTION, &mtxProjection);	//デバイスへ登録
-
-	System_GetDevice()->SetRenderState(D3DRS_LIGHTING, FALSE);	//ライティングをOFF
 }
 
 //===============================================
@@ -108,7 +178,7 @@ void MtxTransformation_Finalize()
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-MTEXTRANSFORM::MTEXTRANSFORM()
+MtxFormat::MtxFormat()
 {
 	//単位行列化
 	D3DXMatrixIdentity(&MtxWorld);
@@ -120,7 +190,7 @@ MTEXTRANSFORM::MTEXTRANSFORM()
 //-------------------------------------
 //	SetIdentity()
 //-------------------------------------
-void MTEXTRANSFORM::SetIdentity(void)
+void MtxFormat::SetIdentity(void)
 {
 	//単位行列化
 	D3DXMatrixIdentity(&MtxWorld);
@@ -128,10 +198,18 @@ void MTEXTRANSFORM::SetIdentity(void)
 	D3DXMatrixIdentity(&MtxRotation);
 }
 
-void MTEXTRANSFORM::SetIdentity(D3DXMATRIX* ReSetMtx)
+void MtxFormat::SetIdentity(D3DXMATRIX* ReSetMtx)
 {
 	D3DXMatrixIdentity(ReSetMtx);
 }
 
+
+//-------------------------------------
+//	SetMaxtrix()
+//-------------------------------------
+void MtxFormat::SetMatrix(void)
+{
+	
+}
 
 
