@@ -18,7 +18,7 @@ UI::UI(Transform2* pTransform2, Texture* pTexture):Sprite(pTransform2, pTexture)
 	
 }
 
-UI::UI(Transform2* pTransform2, Texture* pTexture, Animetion* pAnimetion): Sprite(pTransform2, pTexture, pAnimetion)
+UI::UI(Transform2* pTransform2, Texture* pTexture, Animation* pAnimation): Sprite(pTransform2, pTexture, pAnimation)
 {
 	
 }

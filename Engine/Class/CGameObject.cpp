@@ -18,6 +18,12 @@ GameObject::GameObject() : Render3D(&this->transform, &this->texture)
 	this->texture	= {};
 }
 
+GameObject::GameObject(Transform* pTransform):Render3D(&this->transform, &this->texture)
+{
+	this->transform = *pTransform;
+	this->texture = {};
+}
+
 GameObject::GameObject(Transform* pTransform, Texture* pTexture) : Render3D(&this->transform,&this->texture)
 {
 	this->transform		= *pTransform;

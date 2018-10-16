@@ -55,7 +55,12 @@ void JoyconInput_Update(void);
 bool JoyconInput_IsPress(int nKey);
 bool JoyconInput_IsTrigger(int nKey);
 bool JoyconInput_IsRelease(int nKey);
-	 
+int JoyconInput_GetLeftStickX(void);
+int JoyconInput_GetLeftStickY(void);
+int JoyconInput_GetAVYaw(void);
+int JoyconInput_GetAVRoll(void);
+int JoyconInput_GetAVPitch(void);
+
 void JoyconInput_Draw(void);
 
 

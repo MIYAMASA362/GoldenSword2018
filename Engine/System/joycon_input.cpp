@@ -195,30 +195,30 @@ int JoyconInput_GetLeftStickX(void)
 //=============================================================================
 int JoyconInput_GetLeftStickY(void)
 {
-	return g_Joy.lRy - BASE_POSITION;
+	return -g_Joy.lRy + BASE_POSITION;
 }
 
 
 //=============================================================================
-//	角速度を取得（）
+//	角速度を取得（ヨー）
 //=============================================================================
 int JoyconInput_GetAVYaw(void)
 {
-	return g_Joy.lRz - BASE_POSITION;
+	return -g_Joy.lRz + BASE_POSITION;
 }
 
 
 //=============================================================================
-//	角速度を取得（）
+//	角速度を取得（ロール）
 //=============================================================================
 int JoyconInput_GetAVRoll(void)
 {
-	return g_Joy.rglSlider[0] - BASE_POSITION;
+	return -g_Joy.rglSlider[0] + BASE_POSITION;
 }
 
 
 //=============================================================================
-//	角速度を取得（）
+//	角速度を取得（ピッチ）
 //=============================================================================
 int JoyconInput_GetAVPitch(void)
 {
@@ -230,11 +230,11 @@ int JoyconInput_GetAVPitch(void)
 void JoyconInput_Draw(void)
 {
 #ifdef _DEBUG
-	DebugFont_Draw(0, 0, "スティックX:%d", g_Joy.lRx);
-	DebugFont_Draw(0, 20, "スティックY:%d", g_Joy.lRy);
-	DebugFont_Draw(0, 40, "ヨー:%d", g_Joy.lRz);
-	DebugFont_Draw(0, 60, "ピッチ:%d", g_Joy.rglSlider[1]);
-	DebugFont_Draw(0, 80, "ロール:%d", g_Joy.rglSlider[0]);
+	DebugFont_Draw(0, 0, "スティックX:%d", JoyconInput_GetLeftStickX());
+	DebugFont_Draw(0, 20, "スティックY:%d", JoyconInput_GetLeftStickY());
+	DebugFont_Draw(0, 40, "ヨー:%d", JoyconInput_GetAVYaw());
+	DebugFont_Draw(0, 60, "ピッチ:%d", JoyconInput_GetAVPitch());
+	DebugFont_Draw(0, 80, "ロール:%d", JoyconInput_GetAVRoll());
 	for (int i = 0; i < 30; i++)
 	{
 		DebugFont_Draw(200, 20 * i, "ボタン%d:%d", i, g_Joy.rgbButtons[i]);

@@ -5,7 +5,7 @@
 #pragma once
 #include<d3dx9.h>
 #include"CTransform.h"
-#include"CAnimetion.h"
+#include"CAnimation.h"
 #include"CRender.h"
 
 //===============================================
@@ -18,12 +18,12 @@ private:
 public:
 	Transform2 transform;	//位置
 	Texture texture;		//テクスチャ
-	Animetion animetion;	//アニメーションステータス
+	Animation animation;	//アニメーションステータス
 
 	//コンストラクタ
 	Sprite();
 	Sprite(Transform2* pTransform2,Texture* pTexture);
-	Sprite(Transform2* pTransform2,Texture* pTexture,Animetion* pAnimetion);
+	Sprite(Transform2* pTransform2,Texture* pTexture,Animation* pAnimation);
 
 };
 
