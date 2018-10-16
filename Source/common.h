@@ -19,5 +19,6 @@
 
 #define DISABLE_GAMEPAD
 #define DISABLE_SOUND
+#define DISABLE_JOYCON
 
 #endif // !COMMON_H
