@@ -37,6 +37,7 @@ void Player_Initialize(void)
 //===============================================
 void Player_Update(void)
 {
+
 	// 移動
 	D3DXVECTOR3 vecDirMove(0.0f, 0.0f, 0.0f);						// 移動方向ベクトルワーク
 
@@ -101,6 +102,7 @@ void Player_Update(void)
 	D3DXVec3Normalize(&vecDir, &vecDir);							// 単位ベクトル化
 
 	g_Player.vecDir = vecDir;										// 完成した視点方向ベクトルをプレイヤー視点方向に適用
+
 }
 
 //===============================================

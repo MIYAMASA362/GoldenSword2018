@@ -40,7 +40,7 @@ void MtxTransformation_Initialize()
 //===============================================
 void MtxTransformation_Update()
 {
-
+	
 	//------------------------------------
 	//	カメラ
 	//------------------------------------
@@ -77,7 +77,7 @@ void MtxTransformation_Update()
 	D3DXVec3Normalize(&vecDirSide, &vecDirSide);										// 単位ベクトル化
 	D3DXVec3Cross(&CameraUp, &Player_GetPlayer()->vecDir, &vecDirSide);					// 外積により視点方向、真横方向ベクトルの両方に垂直なベクトルを生成（CameraUp）
 	D3DXVec3Normalize(&CameraUp, &CameraUp);											// 単位ベクトル化
-
+	
 }
 
 //===============================================
@@ -119,7 +119,7 @@ void MtxTransformation_Finalize()
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-MTEXTRANSFORM::MTEXTRANSFORM()
+MtxFormat::MtxFormat()
 {
 	//単位行列化
 	D3DXMatrixIdentity(&MtxWorld);
@@ -131,7 +131,7 @@ MTEXTRANSFORM::MTEXTRANSFORM()
 //-------------------------------------
 //	SetIdentity()
 //-------------------------------------
-void MTEXTRANSFORM::SetIdentity(void)
+void MtxFormat::SetIdentity(void)
 {
 	//単位行列化
 	D3DXMatrixIdentity(&MtxWorld);
@@ -139,7 +139,7 @@ void MTEXTRANSFORM::SetIdentity(void)
 	D3DXMatrixIdentity(&MtxRotation);
 }
 
-void MTEXTRANSFORM::SetIdentity(D3DXMATRIX* ReSetMtx)
+void MtxFormat::SetIdentity(D3DXMATRIX* ReSetMtx)
 {
 	D3DXMatrixIdentity(ReSetMtx);
 }
