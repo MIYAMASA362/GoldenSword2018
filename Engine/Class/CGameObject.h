@@ -23,6 +23,7 @@ public:
 	Texture texture;
 
 	GameObject();
+	GameObject(Transform* pTransform);
 	GameObject(Transform* pTransform,Texture* pTexture);
 };
 

@@ -55,11 +55,14 @@
     <Filter Include="ソース ファイル\Engine\Geometry">
       <UniqueIdentifier>{d0abcb5c-f82f-471a-ae13-2cb8a68ce600}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Assets\cTeam">
+      <UniqueIdentifier>{9e0b0f2e-a4d3-46bf-bc1d-15b825be0d12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Assets\cTeam">
+      <UniqueIdentifier>{86006bc0-a2f0-4f0b-b1d4-279d82304429}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Class\CAnimetion.cpp">
-      <Filter>ソース ファイル\Engine\Class</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Class\CGameObject.cpp">
       <Filter>ソース ファイル\Engine\Class</Filter>
     </ClCompile>
@@ -74,9 +77,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Class\CUI.cpp">
       <Filter>ソース ファイル\Engine\Class</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Internal\Animetion.cpp">
-      <Filter>ソース ファイル\Engine\Internal</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Internal\Collision.cpp">
       <Filter>ソース ファイル\Engine\Internal</Filter>
@@ -141,13 +141,43 @@
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp">
       <Filter>ソース ファイル\Engine\3DWorld</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Internal\Animation.cpp">
+      <Filter>ソース ファイル\Engine\Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Class\CAnimation.cpp">
+      <Filter>ソース ファイル\Engine\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cTeam\CArmorObject.cpp">
+      <Filter>ソース ファイル\Assets\cTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cTeam\CBodyObject.cpp">
+      <Filter>ソース ファイル\Assets\cTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cTeam\CCoreObject.cpp">
+      <Filter>ソース ファイル\Assets\cTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cTeam\CTeamProt.cpp">
+      <Filter>ソース ファイル\Assets\cTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Class\CCollision.cpp">
+      <Filter>ソース ファイル\Engine\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>ソース ファイル\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Geometry\Cube_Debug.cpp">
+      <Filter>ソース ファイル\Engine\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>ソース ファイル\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\joycon_input.cpp">
+      <Filter>ソース ファイル\Engine\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\UnImplemented\MtxTransform.h">
       <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Class\CAnimetion.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Class\CGameObject.h">
       <Filter>ヘッダー ファイル\Engine\Class</Filter>
@@ -163,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Class\CUI.h">
       <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Internal\Animetion.h">
-      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Internal\Collision.h">
       <Filter>ヘッダー ファイル\Engine\Internal</Filter>
@@ -229,6 +256,39 @@
     </ClInclude>
     <ClInclude Include="Engine\UnImplemented\Lighting.h">
       <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CAnimation.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Internal\Animation.h">
+      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\cTeam\CArmorObject.h">
+      <Filter>ヘッダー ファイル\Assets\cTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\cTeam\CBodyObject.h">
+      <Filter>ヘッダー ファイル\Assets\cTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\cTeam\CCoreObject.h">
+      <Filter>ヘッダー ファイル\Assets\cTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CCollision.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Geometry\Cube_Debug.h">
+      <Filter>ヘッダー ファイル\Engine\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Bullet.h">
+      <Filter>ヘッダー ファイル\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>ヘッダー ファイル\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\cTeam\CTeamProt.h">
+      <Filter>ヘッダー ファイル\Assets\cTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\joycon_input.h">
+      <Filter>ヘッダー ファイル\Engine\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

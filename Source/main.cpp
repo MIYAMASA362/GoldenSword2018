@@ -14,8 +14,21 @@
 #include"MtxTransform.h"
 #include"Lighting.h"
 
+#include"CTeamProt.h"
+#include"Player.h"
+#include"Bullet.h"
+
+//Class
 #include"CUI.h"
 
+#define VECTOR3_ONE (D3DXVECTOR3(1.0f,1.0f,1.0f))
+#define VECTOR3(x)  (D3DXVECTOR3(x,x,x))
+
+//===============================================
+//	グローバル変数
+//===============================================
+
+//UI表示
 static UI uiSprite(
 	&Transform2
 	(
@@ -40,6 +53,10 @@ void Main_Initialize(void)
 	MtxTransformation_Initialize();
 	Lighting_Initialize();
 
+	CTeamProt_Initialize();
+	Bullet_Init();
+	Player_Initialize();
+
 	uiSprite = uiSprite;
 }
 
@@ -51,6 +68,9 @@ void Main_UpdateBegin(void)
 	MtxTransformation_Update();
 	Cube_Update();
 
+	CTeamProt_Update();
+	Bullet_Update();
+	Player_Update();
 }
 
 //=============================================================
@@ -61,7 +81,10 @@ void Main_Render(void)
 	
 	MtxTransformation_Render();
 	Cube_Render();
+	CTeamProt_Render();
 	uiSprite.Begin(R2D_SPRITE_ROTATE);
+	Bullet_Draw();
+	Player_Render();
 }
 
 
@@ -78,5 +101,5 @@ void Main_UpdateEnd()
 //=============================================================
 void Main_Finalize(void)
 {
-
+	Player_Finalize();
 }

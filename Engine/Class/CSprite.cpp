@@ -25,12 +25,12 @@ Sprite::Sprite(Transform2* pTransform2, Texture* pTexture) :Render2D(&this->tran
 {
 	this->transform = *pTransform2;
 	this->texture = *pTexture;
-	this->pAnimetion = NULL;
+	this->pAnimation = NULL;
 }
 
-Sprite::Sprite(Transform2* pTransform2, Texture* pTexture, Animetion* pAnimetion):Render2D(&this->transform,&this->texture,&this->animetion)
+Sprite::Sprite(Transform2* pTransform2, Texture* pTexture, Animation* pAnimation):Render2D(&this->transform,&this->texture,&this->animation)
 {
 	this->transform		= *pTransform2;
 	this->texture		= *pTexture;
-	this->animetion		= *pAnimetion;
+	this->animation		= *pAnimation;
 }

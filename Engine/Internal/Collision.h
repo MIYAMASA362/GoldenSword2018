@@ -74,10 +74,10 @@ public:
 	Collision* pCollision;
 	Transform2* pTransform2;	//親位置
 	
-	D3DXVECTOR2 Force;		//力
-	D3DXVECTOR2 velocity;	//速度
+	D3DXVECTOR2 Force;			//力
+	D3DXVECTOR2 velocity;		//速度
 
-	bool UseGravity;	//重力を使う
+	bool UseGravity;				//重力を使う
 	void Update(float Speed);		//更新処理
 	void Update(D3DXVECTOR2 Speed);	//更新処理
 	HIT_PORTION Collision_Hit(const Collision* pCollision);	//あたり判定

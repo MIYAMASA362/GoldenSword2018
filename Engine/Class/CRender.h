@@ -9,7 +9,7 @@
 #include<d3dx9.h>
 #include"CTransform.h"
 #include"CTexture.h"
-#include"CAnimetion.h"
+#include"CAnimation.h"
 
 //===============================================
 //	列挙
@@ -32,12 +32,12 @@ typedef enum RENDER2D_TYPE
 //-------------------------------------
 //	描画タイプ	スプライトアニメーション
 //-------------------------------------
-typedef enum RENDER2DANIME_TYPE
+typedef enum RENDER2DANIMA_TYPE
 {
 	R2DA_NOLOOP,
 	R2DA_LOOP,
 	R2DA_LOOP_ROTATE
-}RENDER2DANIME_TYPE;
+}RENDER2DANIMA_TYPE;
 
 //===============================================
 //	クラス
@@ -73,15 +73,15 @@ private:
 public:
 	Transform2* pTransform;
 	Texture*	pTexture;
-	Animetion*	pAnimetion;
+	Animation*	pAnimation;
 
 	//コンストラクタ
 	Render2D();
 	Render2D(Transform2* pTransform, Texture* pTexture);
-	Render2D(Transform2* pTransform, Texture* pTexture, Animetion* pAnimetion);
+	Render2D(Transform2* pTransform, Texture* pTexture, Animation* pAnimation);
 
 	bool Begin(RENDER2D_TYPE R2D_TYPE);
-	bool Begin(RENDER2DANIME_TYPE R2DA_TYPE);
+	bool Begin(RENDER2DANIMA_TYPE R2DA_TYPE);
 };
 
 #endif // !CRENDER_H

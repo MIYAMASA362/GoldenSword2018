@@ -25,7 +25,7 @@ typedef enum TEXTURE_NAME
 {
 	CubeTexture,
 	TEXTURE_NAME_END,	//テクスチャ終わり
-	TEXTURE_UNKOWN								//指定無い場合
+	TEXTURE_NONE		//指定無い場合
 }TEXTURE_NAME;
 
 //===============================================

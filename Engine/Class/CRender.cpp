@@ -10,7 +10,7 @@
 #include"System.h"
 #include"Texture.h"
 #include"Sprite.h"
-#include"Animetion.h"
+#include"Animation.h"
 
 //===============================================
 //	Render　クラス
@@ -60,7 +60,7 @@ bool Render::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UI
 	System_GetDevice()->SetTransform(D3DTS_WORLD, &MtxWorld);	//デバイスへ登録
 	System_GetDevice()->SetFVF(SetFVF);
 
-	if (pTexture == NULL)
+	if (pTexture == NULL || pTexture->Texture_index == TEXTURE_NONE)
 	{
 		System_GetDevice()->SetTexture(0, NULL);
 	}
@@ -84,7 +84,7 @@ Render2D::Render2D()
 {
 	pTransform = NULL;
 	pTexture = NULL;
-	pAnimetion = NULL;
+	pAnimation = NULL;
 }
 
 //-------------------------------------
@@ -94,14 +94,14 @@ Render2D::Render2D(Transform2* pTransform, Texture* pTexture)
 {
 	this->pTransform = pTransform;
 	this->pTexture = pTexture;
-	pAnimetion = NULL;
+	pAnimation = NULL;
 }
 
-Render2D::Render2D(Transform2* pTransform, Texture* pTexture, Animetion* pAnimetion)
+Render2D::Render2D(Transform2* pTransform, Texture* pTexture, Animation* pAnimation)
 {
 	this->pTransform = pTransform;
 	this->pTexture = pTexture;
-	this->pAnimetion = pAnimetion;
+	this->pAnimation = pAnimation;
 }
 
 //-------------------------------------
@@ -144,20 +144,20 @@ bool Render2D::Begin(RENDER2D_TYPE R2D_TYPE)
 //-------------------------------------
 //	描画　スプライトアニメーション
 //-------------------------------------
-bool Render2D::Begin(RENDER2DANIME_TYPE R2DA_TYPE)
+bool Render2D::Begin(RENDER2DANIMA_TYPE R2DA_TYPE)
 {
-	if (pTransform == NULL || pTexture == NULL || pAnimetion == NULL) return false;
+	if (pTransform == NULL || pTexture == NULL || pAnimation == NULL) return false;
 
 	switch (R2DA_TYPE)
 	{
 	case R2DA_NOLOOP:
-		Animetion_NoLoop(pTransform, pTexture, pAnimetion);
+		Animation_NoLoop(pTransform, pTexture, pAnimation);
 		break;
 	case R2DA_LOOP:
-		Animetion_Loop(pTransform, pTexture, pAnimetion);
+		Animation_Loop(pTransform, pTexture, pAnimation);
 		break;
 	case R2DA_LOOP_ROTATE:
-		Animetion_Loop_Rotate(pTransform, pTexture, pAnimetion);
+		Animation_Loop_Rotate(pTransform, pTexture, pAnimation);
 		break;
 	default:
 		return false;
