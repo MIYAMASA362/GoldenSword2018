@@ -14,13 +14,14 @@
 //===============================================
 //	GameObjectÅ@ÉNÉâÉX
 //===============================================
-class GameObject:public Render3D
+class GameObject
 {
 private:
 
 public:
 	Transform transform;
 	Texture texture;
+	Render3D render;
 
 	GameObject();
 	GameObject(Transform* pTransform);

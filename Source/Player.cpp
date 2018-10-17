@@ -2,10 +2,18 @@
 //	Player.cpp
 //		Author:YU NISHIMAKI	DATE:2018/10/13
 //===============================================
+//	変更者 Changed By
+//		Name:HIROMASA IEKDA	DATE:2018/10/17
+//
+//-----------------------------------------------
 #include<d3dx9.h>
+#include"common.h"
+#include"input.h"
 #include"joycon_input.h"
 #include"Debug_font.h"
 #include"Player.h"
+
+//Class
 
 //===============================================
 //	マクロ定義
@@ -18,7 +26,8 @@
 //===============================================
 //	グローバル変数
 //===============================================
-PLAYER g_Player;
+static PLAYER g_Player;
+static PlayerCamera g_PlayerCamera;
 
 //===============================================
 //	初期化
@@ -30,6 +39,8 @@ void Player_Initialize(void)
 	g_Player.vecDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);		// プレイヤー視点方向ベクトル
 	g_Player.AngleY = 0.0f;									// コントローラ左右回転角	
 	g_Player.AngleX = 0.0f;									// コントローラ上下回転角
+
+	g_PlayerCamera.Set_Main();
 }
 
 //===============================================
@@ -103,6 +114,7 @@ void Player_Update(void)
 
 	g_Player.vecDir = vecDir;										// 完成した視点方向ベクトルをプレイヤー視点方向に適用
 
+	g_PlayerCamera.Update();
 }
 
 //===============================================
@@ -136,4 +148,36 @@ void Player_ResetAngle(void)
 const PLAYER *Player_GetPlayer(void)
 {
 	return &g_Player;
+}
+
+//===============================================
+//	PlayerCamera クラス
+//===============================================
+
+//-------------------------------------
+//	初期化
+//-------------------------------------
+void PlayerCamera::Initialize()
+{
+
+}
+
+//-------------------------------------
+//	更新
+//-------------------------------------
+void PlayerCamera::Update()
+{
+#if !defined(DISABLE_JOYCON) && !defined(DISABLE_GAMEPAD)
+	this->position = Player_GetPlayer()->Position;											// カメラ位置をプレイヤー座標に同期
+	this->at = Player_GetPlayer()->Position + Player_GetPlayer()->vecDir * 5.0f;		// カメラ注視点をプレイヤー座標とプレイヤー視点方向から算出
+	
+	D3DXVECTOR3 vecDirSide(0.0f, 0.0f, 0.0f);											// 真横方向ベクトルワーク
+	vecDirSide.x = Player_GetPlayer()->vecDir.z;										// 視点方向に垂直なベクトルを生成
+	vecDirSide.z = -(Player_GetPlayer()->vecDir.x);										// 同上
+	D3DXVec3Normalize(&vecDirSide, &vecDirSide);										// 単位ベクトル化
+	D3DXVec3Cross(&this->up, &Player_GetPlayer()->vecDir, &vecDirSide);					// 外積により視点方向、真横方向ベクトルの両方に垂直なベクトルを生成（CameraUp）
+	D3DXVec3Normalize(&this->up, &this->up);
+#else
+	Camera::Update();
+#endif
 }

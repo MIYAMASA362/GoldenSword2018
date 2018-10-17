@@ -68,6 +68,7 @@ bool Render::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UI
 	{
 		System_GetDevice()->SetTexture(0, Texture_GetTexture(pTexture->Texture_index));
 	}
+
 	System_GetDevice()->DrawPrimitiveUP(PrimitiveType, PrimitiveCount, Model, DataSize);
 
 	return true;

@@ -1,90 +1,65 @@
+//
+//	Bullet.cpp
+//		Author:ハン	DATE:
+//===============================================
+//	変更者 Change by
+//		Author:HIROMASA IKEDA DATE:2018/10/17
+//
+//-----------------------------------------------
 #include <d3dx9.h>
 #include "Bullet.h"
 #include "common.h"
 #include "System.h"
 
+#include"Cube.h"
+
+//===============================================
+//	マクロ定義
+//===============================================
 #define BULLET_NORMAL_SPEED (6.0f)
 #define BULLET_NORMAL_RADIUS (1)		//弾の半径
 #define BULLET_COUNT (256)
+#define BULLET_MAX (256)
 
-typedef struct 
+//===============================================
+//	構造体
+//===============================================
+
+//===============================================
+//	グローバル変数
+//===============================================
+Bullet g_Bullet[BULLET_MAX];
+
+//===============================================
+//	関数
+//===============================================
+
+//-------------------------------------
+//	初期化
+//-------------------------------------
+void Bullet_Initialize()
 {
-	D3DXVECTOR3 pos;
-	D3DXVECTOR3 face;
-	bool Bullet_IsEnable;
-	Ball BulletCollision;	//当たり判定構造体		typedef struct
-												//	{
-												//		D3DXVECTOR3 pos;
-												//		float r;
-												//	}Ball;
-	Bullet_Type Bullet_Type;
-
-}CBullet;
-
-CBullet Bullet[BULLET_COUNT];
-
-void Bullet_Init(void)
-{
-	for (int i = 0; i < BULLET_COUNT; i++)
+	for(int i = 0; i<BULLET_MAX; i++)
 	{
-		Bullet[i].Bullet_Type = kMAX;
-		Bullet[i].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		Bullet[i].face = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		Bullet[i].BulletCollision.pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		Bullet[i].BulletCollision.r = 0.0f;
-		Bullet[i].Bullet_IsEnable = false;
+		g_Bullet[i].transform.Scale = {0.5f,0.5f,0.5f};
 	}
 }
 
-void Bullet_Draw(void)
+//-------------------------------------
+//	更新
+//-------------------------------------
+void Bullet_Update()
 {
-	D3DXMATRIX mtxWorld;
-	// 弾の描画(有効の場合
-	for (int i = 0; i < BULLET_COUNT; i++)
+	for(int i = 0; i< BULLET_MAX; i++)
 	{
-		if (Bullet[i].Bullet_IsEnable)
+		if(g_Bullet[i].GetEnable())
 		{
-			D3DXMatrixTranslation(&mtxWorld, Bullet[i].pos.x, Bullet[i].pos.y, Bullet[i].pos.z);	//平行移動行列を作る
-			System_GetDevice()->SetTransform(D3DTS_WORLD, &mtxWorld);										//ワールド変換行列の設定
-
-			switch (Bullet[i].Bullet_Type)
-			{
-			case kNORMAL:
-				//Ball_Render();
-				break;
-			default:
-				break;
-			}
+			g_Bullet[i].Update();
 		}
 	}
 }
 
-void Bullet_Update(void)
-{
-	D3DXVECTOR3 MOVE;
-	
-	//　弾の更新(有効の場合
-	for (int i = 0; i < BULLET_COUNT; i++)
-	{
-		D3DXVec3Normalize(&Bullet[i].face, &Bullet[i].face);
-
-		if (Bullet[i].Bullet_IsEnable)
-		{
-			switch (Bullet[i].Bullet_Type)
-			{
-			case kNORMAL:
-				MOVE = Bullet[i].face * BULLET_NORMAL_SPEED;
-				Bullet[i].pos += MOVE;
-				break;
-			default:
-				break;
-				//Bullet[i].BulletCollision.pos = pos;
-			}
-
-		}
-	}
-
-
+/*
 	////弾の無効(画面外の場合
 	//for (int i = 0; i < BULLET_COUNT; i++)
 	//{
@@ -95,48 +70,119 @@ void Bullet_Update(void)
 	//		Bullet_Destroy(i);
 	//	}
 	//}
-}
+*/
 
-void Bullet_Create(D3DXVECTOR3 pos, D3DXVECTOR3 face, Bullet_Type type)
+//-------------------------------------
+//	描画
+//-------------------------------------
+void Bullet_Render()
 {
-	for (int i = 0; i < BULLET_COUNT; i++)
+	for(int i = 0; i < BULLET_MAX; i++)
 	{
-		if (Bullet[i].Bullet_IsEnable)
+		if(g_Bullet[i].GetEnable())
 		{
-
-		}
-		else
-		{
-			Bullet[i].pos = pos;
-			Bullet[i].face = face;
-			Bullet[i].Bullet_Type = type;
-			Bullet[i].BulletCollision.pos = pos;
-			switch (Bullet[i].Bullet_Type)
-			{
-			case kNORMAL:
-				Bullet[i].BulletCollision.r = BULLET_NORMAL_RADIUS;
-				break;
-			default:
-				break;
-			}
-			Bullet[i].Bullet_IsEnable = true;
-			break;
+			g_Bullet[i].render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
 		}
 	}
 }
 
+//-------------------------------------
+//	生成
+//-------------------------------------
+void Bullet_Create(D3DXVECTOR3 position, D3DXVECTOR3 face, BULLET_TYPE type)
+{
+	for(int i= 0; i< BULLET_MAX; i++)
+	{
+		if(!g_Bullet[i].GetEnable())
+		{
+			g_Bullet[i].SetBullet(position,face,type);
+		}
+	}
+}
+
+//-------------------------------------
+//	削除
+//-------------------------------------
 void Bullet_Destroy(int index)
 {
-	// 弾を無効にする
-	Bullet[index].Bullet_IsEnable = false;
+	g_Bullet[index].DisEnable();
 }
 
+//-------------------------------------
+//	有効か
+//-------------------------------------
 bool Bullet_IsEnable(int index)
 {
-	return Bullet[index].Bullet_IsEnable;
+	return g_Bullet[index].GetEnable();
 }
 
-const Ball * Bullet_Getcollosion(int index)
+//===============================================
+//	Bullet クラス
+//===============================================
+
+//-------------------------------------
+//	コンストラクタ
+//-------------------------------------
+Bullet::Bullet()
 {
-	return &Bullet[index].BulletCollision;
+	IsEnable = false;
 }
+
+Bullet::Bullet(Transform* pTransform, Texture* pTexture):GameObject(pTransform,pTexture)
+{
+	type = BULLET_NORMAL;
+	Bullet();
+}
+
+//-------------------------------------
+//	弾のタイプ設定
+//-------------------------------------
+void Bullet::TypeSet(BULLET_TYPE tyep)
+{
+	this->type = type;
+}
+
+//-------------------------------------
+//	更新処理
+//-------------------------------------
+void Bullet::Update()
+{
+	switch (this->type)
+	{
+	case BULLET_NORMAL:
+		this->transform.Position += this->face * BULLET_NORMAL_SPEED;
+		break;
+	default:
+		break;
+	}
+}
+
+//-------------------------------------
+//	Enable取得
+//-------------------------------------
+bool Bullet::GetEnable()
+{
+	return this->IsEnable;
+}
+
+//--------------------------------------
+//	弾を設定
+//--------------------------------------
+void Bullet::SetBullet(D3DXVECTOR3 position, D3DXVECTOR3 face, BULLET_TYPE type)
+{
+	D3DXVec3Normalize(&face,&face);		//単位化
+
+	this->transform.Position = position;
+	this->face = face;
+	this->type = type;
+	this->IsEnable = true;
+}
+
+//-------------------------------------
+//	弾を無効化
+//-------------------------------------
+void Bullet::DisEnable()
+{
+	this->IsEnable = false;
+}
+

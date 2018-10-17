@@ -60,7 +60,7 @@ void Cube_Update()
 void Cube_Render()
 {
 	Lighting_SetLight();
-	CubeObject.Begin(FVF_CUBE_VERTEX3D,CUBE_PRIMITIVE_TYPE, &Cube[0],sizeof(CubeVertex3D),CUBE_PRIMITIVE_NUM);
+	CubeObject.render.Begin(FVF_CUBE_VERTEX3D,CUBE_PRIMITIVE_TYPE, &Cube[0],sizeof(CubeVertex3D),CUBE_PRIMITIVE_NUM);
 }
 
 //-------------------------------------

@@ -114,9 +114,6 @@
     <ClCompile Include="Engine\System\system_timer.cpp">
       <Filter>ソース ファイル\Engine\System</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp">
-      <Filter>ソース ファイル\Engine\3DWorld</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Geometry\Cube.cpp">
       <Filter>ソース ファイル\Engine\Geometry</Filter>
     </ClCompile>
@@ -134,9 +131,6 @@
     </ClCompile>
     <ClCompile Include="Engine\System\Dualshock4Private.c">
       <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\UnImplemented\Camera.cpp">
-      <Filter>ソース ファイル\Engine\3DWorld</Filter>
     </ClCompile>
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp">
       <Filter>ソース ファイル\Engine\3DWorld</Filter>
@@ -174,11 +168,17 @@
     <ClCompile Include="Engine\System\joycon_input.cpp">
       <Filter>ソース ファイル\Engine\System</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Class\CCamera.cpp">
+      <Filter>ソース ファイル\Engine\3DWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp">
+      <Filter>ソース ファイル\Engine\3DWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Class\Camera.cpp">
+      <Filter>ソース ファイル\Engine\3DWorld</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\UnImplemented\MtxTransform.h">
-      <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Class\CGameObject.h">
       <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
@@ -289,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="Engine\System\joycon_input.h">
       <Filter>ヘッダー ファイル\Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\UnImplemented\MtxTransform.h">
+      <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
