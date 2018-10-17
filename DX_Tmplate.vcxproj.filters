@@ -177,6 +177,9 @@
     <ClCompile Include="Engine\Class\Camera.cpp">
       <Filter>ソース ファイル\Engine\3DWorld</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Class\CCollisionableObject.cpp">
+      <Filter>ソース ファイル\Engine\Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Class\CGameObject.h">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="Engine\UnImplemented\MtxTransform.h">
       <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CCollisionableObject.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

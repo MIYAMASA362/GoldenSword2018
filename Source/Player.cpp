@@ -13,6 +13,7 @@
 #include"Debug_font.h"
 #include"Player.h"
 
+#include"Bullet.h"
 //Class
 
 //===============================================
@@ -41,6 +42,7 @@ void Player_Initialize(void)
 	g_Player.AngleX = 0.0f;									// コントローラ上下回転角
 
 	g_PlayerCamera.Set_Main();
+	Bullet_Initialize();
 }
 
 //===============================================
@@ -115,6 +117,13 @@ void Player_Update(void)
 	g_Player.vecDir = vecDir;										// 完成した視点方向ベクトルをプレイヤー視点方向に適用
 
 	g_PlayerCamera.Update();
+
+	if (JoyconInput_IsTrigger(JOYCON_BUTTON_INDEX_R_SR))
+	{
+		Bullet_Create(g_Player.Position, vecDir,BULLET_NORMAL);
+	}
+
+	Bullet_Update();
 }
 
 //===============================================
@@ -122,6 +131,7 @@ void Player_Update(void)
 //===============================================
 void Player_Render(void)
 {
+	Bullet_Render();
 	DebugFont_Draw(500, 0, "左右角度%.3f\n上下角度%.3f", g_Player.AngleY, g_Player.AngleX);
 }
 

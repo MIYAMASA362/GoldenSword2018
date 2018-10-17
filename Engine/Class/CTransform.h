@@ -16,14 +16,20 @@ class Transform
 private:
 
 public :
+	//基本情報
 	D3DXVECTOR3 Position;	//位置
 	D3DXVECTOR3 Scale;		//サイズ
 	D3DXVECTOR3 Rotation;	//回転
 	D3DCOLOR	Color;		//色
 	
+	//軸方向
+	D3DXVECTOR3 up;			//上
+	D3DXVECTOR3 forward;	//前
+	D3DXVECTOR3 right;		//右
+
 	//コンストラクタ
-	Transform();
-	Transform(D3DXVECTOR3 Position, D3DXVECTOR3 Scale, D3DXVECTOR3 Rotation);
+	Transform() :Transform({ 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f }, { 0.0f,0.0f,0.0f }, D3DCOLOR_RGBA(255, 255, 255, 255)){};
+	Transform(D3DXVECTOR3 Position, D3DXVECTOR3 Scale, D3DXVECTOR3 Rotation) :Transform(Position, Scale, Rotation, D3DCOLOR_RGBA(255, 255, 255, 255)) {};
 	Transform(D3DXVECTOR3 Position, D3DXVECTOR3 Scale, D3DXVECTOR3 Rotation, D3DCOLOR Color);
 
 };

@@ -72,7 +72,6 @@ static CoreObject Screw
 	)
 );
 
-
 //===============================================
 //	ä÷êî
 //===============================================
@@ -90,11 +89,6 @@ void CTeamProt_Initialize()
 //-------------------------------------
 void CTeamProt_Update()
 {
-	if(Keyboard_IsTrigger(DIK_SPACE))
-	{
- 		Screw.Hit();
-	}
-
 	Armar_01.Update();
 }
 

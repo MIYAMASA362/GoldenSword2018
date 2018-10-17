@@ -21,9 +21,9 @@
 //Class
 #include"CTransform.h"
 
-//================================================
+//===============================================
 //	マクロ定義	define
-//================================================
+//===============================================
 
 
 //================================================
@@ -50,26 +50,27 @@ class Camera
 {
 private:
 	static Camera* MainCamera;	//メインカメラ
+
 public:
+	D3DXVECTOR3 position;		//位置
+	float Speed;				//移動速度
+
+	D3DXVECTOR3 at;				//注視点
+	D3DXVECTOR3 up;				//カメラ上
+	D3DXVECTOR3 forward;		//カメラ前
+	D3DXVECTOR3 right;			//カメラ右
+	float atDistance;			//注視点までの距離
+	float fov;					//画角
+
+	Camera() :Camera(CAMERA_POS, CAMERA_AT, CAMERA_ATDISTANCE, CAMERA_FOV) {};
+	Camera(D3DXVECTOR3 Position) : Camera(Position, CAMERA_AT, CAMERA_ATDISTANCE, CAMERA_FOV) {};
+	Camera(D3DXVECTOR3 Position, D3DXVECTOR3 At, float AtDistance, float fov);
 
 	static Camera* Get_Main();
 	static bool Begin();		//描画開始
-
-	D3DXVECTOR3 position;		//位置
-	D3DXVECTOR3 at;				//視点
-	D3DXVECTOR3 up;				//カメラ上
-
-	Camera();
-	Camera(D3DXVECTOR3 Position);
-	Camera(D3DXVECTOR3 Position, D3DXVECTOR3 At);
-
  	virtual void Initialize();	//初期化
 	virtual void Update();		//更新
-
 	void Set_Main();			//メインカメラに設定
-
-protected:
-
 };
 
 
