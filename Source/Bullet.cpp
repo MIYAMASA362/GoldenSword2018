@@ -16,7 +16,7 @@
 //===============================================
 //	マクロ定義
 //===============================================
-#define BULLET_NORMAL_SPEED (6.0f)
+#define BULLET_NORMAL_SPEED (0.1f)
 #define BULLET_NORMAL_RADIUS (1)		//弾の半径
 #define BULLET_COUNT (256)
 #define BULLET_MAX (256)
@@ -96,6 +96,7 @@ void Bullet_Create(D3DXVECTOR3 position, D3DXVECTOR3 face, BULLET_TYPE type)
 		if(!g_Bullet[i].GetEnable())
 		{
 			g_Bullet[i].SetBullet(position,face,type);
+			return;
 		}
 	}
 }
@@ -116,6 +117,12 @@ bool Bullet_IsEnable(int index)
 	return g_Bullet[index].GetEnable();
 }
 
+ShapeSphere* Bullet_ColShape(int index)
+{
+	return &g_Bullet[index].ColSphape;
+}
+
+
 //===============================================
 //	Bullet クラス
 //===============================================
@@ -123,12 +130,12 @@ bool Bullet_IsEnable(int index)
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-Bullet::Bullet()
+Bullet::Bullet():ColSphape(this->transform.Position,1)
 {
 	IsEnable = false;
 }
 
-Bullet::Bullet(Transform* pTransform, Texture* pTexture):GameObject(pTransform,pTexture)
+Bullet::Bullet(Transform* pTransform, Texture* pTexture):GameObject(pTransform,pTexture),ColSphape(pTransform->Position,1.0f)
 {
 	type = BULLET_NORMAL;
 	Bullet();
@@ -147,6 +154,8 @@ void Bullet::TypeSet(BULLET_TYPE tyep)
 //-------------------------------------
 void Bullet::Update()
 {
+	ColSphape.Pos = this->transform.Position;
+
 	switch (this->type)
 	{
 	case BULLET_NORMAL:

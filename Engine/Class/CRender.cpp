@@ -55,7 +55,12 @@ bool Render::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UI
 	D3DXMatrixIdentity(&MtxRotate);
 	D3DXMatrixRotationYawPitchRoll(&MtxRotate,pTransform->Rotation.y,pTransform->Rotation.x,pTransform->Rotation.z);
 
+	D3DXVec3TransformNormal(&this->pTransform->right,&this->pTransform->right,&MtxRotate);
+	D3DXVec3TransformNormal(&this->pTransform->forward,&this->pTransform->forward,&MtxRotate);
+	D3DXVec3Cross(&this->pTransform->up,&this->pTransform->right,&this->pTransform->forward);
+
 	MtxWorld *= MtxScale  * MtxRotate * MtxTransform;
+
 
 	System_GetDevice()->SetTransform(D3DTS_WORLD, &MtxWorld);	//ƒfƒoƒCƒX‚Ö“o˜^
 	System_GetDevice()->SetFVF(SetFVF);

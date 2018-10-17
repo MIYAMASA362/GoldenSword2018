@@ -20,6 +20,7 @@ private:
 	ArmarObject*	pArmarObject;
 	BodyObject*		pBodyObject;
 public:
+	
 	CoreObject(Transform* pTransform, Texture* pTexture);
 	void Hit();
 	void Set(ArmarObject* pArmarObject, BodyObject* pBodyObject);

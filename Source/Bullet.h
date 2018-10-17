@@ -11,10 +11,10 @@
 
 #include"common.h"
 #include <d3dx9.h>
-#include "Collision.h"
 
 //Class
 #include"CGameObject.h"
+#include"CCollisionableObject.h"
 
 //===============================================
 //	ç\ë¢ëÃ
@@ -40,6 +40,8 @@ private:
 	D3DXVECTOR3 face;						//íeÇÃå¸Ç´
 public:
 
+	ShapeSphere ColSphape;
+
 	Bullet();
 	Bullet(Transform* pTransform, Texture* pTexture);
 
@@ -60,5 +62,6 @@ void Bullet_Update();
 void Bullet_Create(D3DXVECTOR3 pos,D3DXVECTOR3 face, BULLET_TYPE type);
 void Bullet_Destroy(int index);
 bool Bullet_IsEnable(int index);
+ShapeSphere* Bullet_ColShape(int index);
 
 #endif // !BULLET_H

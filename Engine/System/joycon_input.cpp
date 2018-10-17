@@ -187,7 +187,7 @@ bool JoyconInput_IsRelease(int nKey)
 //=============================================================================
 int JoyconInput_GetLeftStickX(void)
 {
-	return g_Joy.lRx - BASE_POSITION;
+	return g_Joy.lX - BASE_POSITION;
 }
 
 //=============================================================================
@@ -195,7 +195,7 @@ int JoyconInput_GetLeftStickX(void)
 //=============================================================================
 int JoyconInput_GetLeftStickY(void)
 {
-	return -g_Joy.lRy + BASE_POSITION;
+	return -g_Joy.lY + BASE_POSITION;
 }
 
 

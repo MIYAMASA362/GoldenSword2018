@@ -3,6 +3,7 @@
 //		Author:HIROMASA IKEDA		Date:2018/09/13
 //================================================
 #include"common.h"
+#include<time.h>
 #include"System.h"
 #include"input.h"
 #include"Texture.h"
@@ -32,8 +33,8 @@
 static UI uiSprite(
 	&Transform2
 	(
-		D3DXVECTOR2(60.0f, 60.0f),
-		D3DXVECTOR2(100.0f, 100.0f),
+		D3DXVECTOR2(WINDOWSCREEN_WIDTH*0.5f,WINDOWSCREEN_HEIGHT * 0.5f),
+		D3DXVECTOR2(5.0f, 5.0f),
 		0,
 		D3DCOLOR_RGBA(255, 255, 0, 255)
 	),
@@ -58,6 +59,8 @@ void Main_Initialize(void)
 	Player_Initialize();
 
 	uiSprite = uiSprite;
+
+	srand(time(NULL));
 }
 
 //=============================================================
