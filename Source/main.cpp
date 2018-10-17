@@ -54,7 +54,7 @@ void Main_Initialize(void)
 	Lighting_Initialize();
 
 	CTeamProt_Initialize();
-	Bullet_Init();
+	Bullet_Initialize();
 	Player_Initialize();
 
 	uiSprite = uiSprite;
@@ -83,7 +83,7 @@ void Main_Render(void)
 	Cube_Render();
 	CTeamProt_Render();
 	uiSprite.Begin(R2D_SPRITE_ROTATE);
-	Bullet_Draw();
+	Bullet_Render();
 	Player_Render();
 }
 

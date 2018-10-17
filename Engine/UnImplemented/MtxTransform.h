@@ -1,10 +1,10 @@
 //
-//	MtxTransform.h
-//		Author:HIROMASA IKEDA	DATE:2018/09/28
+//	CMtxTransform.h
+//		Author:HIROMASA IKEDA	DATE:2018/10/16
 //===============================================
 #pragma once
-#ifndef MTXTRANSFORM_H
-#define MTXTRANSFORM_H
+#ifndef CMTXTRANSFORM_H
+#define CMTXTRANSFORM_H
 
 #include<d3dx9.h>
 

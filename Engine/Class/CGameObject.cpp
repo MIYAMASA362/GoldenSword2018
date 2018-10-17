@@ -12,19 +12,19 @@
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-GameObject::GameObject() : Render3D(&this->transform, &this->texture)
+GameObject::GameObject() : render(&this->transform, &this->texture)
 {
 	this->transform = {};
 	this->texture	= {};
 }
 
-GameObject::GameObject(Transform* pTransform):Render3D(&this->transform, &this->texture)
+GameObject::GameObject(Transform* pTransform):render(&this->transform, &this->texture)
 {
 	this->transform = *pTransform;
 	this->texture = {};
 }
 
-GameObject::GameObject(Transform* pTransform, Texture* pTexture) : Render3D(&this->transform,&this->texture)
+GameObject::GameObject(Transform* pTransform, Texture* pTexture) : render(&this->transform,&this->texture)
 {
 	this->transform		= *pTransform;
 	this->texture		= *pTexture;

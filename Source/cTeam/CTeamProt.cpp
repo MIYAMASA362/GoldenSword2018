@@ -103,12 +103,12 @@ void CTeamProt_Update()
 //-------------------------------------
 void CTeamProt_Render()
 {
-	Body.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-	Armar_01.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+	Body.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+	Armar_01.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
 	
 	if (!Armar_01.bBreak)
 	{
-		Screw.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+		Screw.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
 	}
 }
 

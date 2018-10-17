@@ -161,7 +161,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Class\Camera.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Engine\Class\CAnimation.cpp" />
+    <ClCompile Include="Engine\Class\CCamera.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Engine\Class\CCollision.cpp">
       <SubType>
       </SubType>
@@ -191,7 +199,6 @@
     <ClCompile Include="Engine\System\sound.cpp" />
     <ClCompile Include="Engine\System\System.cpp" />
     <ClCompile Include="Engine\System\system_timer.cpp" />
-    <ClCompile Include="Engine\UnImplemented\Camera.cpp" />
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp" />
     <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
@@ -204,6 +211,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Class\CAnimation.h" />
+    <ClInclude Include="Engine\Class\CCamera.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Engine\Class\CCollision.h">
       <SubType>
       </SubType>
