@@ -97,7 +97,7 @@ public:
 static class Collision
 {
 public:
-	bool SphereVsSphere( ShapeSphere& Sphere0, ShapeSphere& Sphere1 );
+	static bool SphereVsSphere( ShapeSphere& Sphere0, ShapeSphere& Sphere1 );
 	bool CuboidVsSphere( ShapeCuboid& Cuboid, ShapeSphere& Sphere ) {}
 	bool CuboidVsCuboid( ShapeCuboid& Cuboid0, ShapeCuboid& Cuboid1 ) {}
 };

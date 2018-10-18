@@ -81,7 +81,7 @@ void Bullet_Render()
 	{
 		if(g_Bullet[i].GetEnable())
 		{
-			g_Bullet[i].render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, &Cube[0], sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+			g_Bullet[i].render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
 		}
 	}
 }

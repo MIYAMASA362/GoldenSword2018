@@ -180,6 +180,9 @@
     <ClCompile Include="Engine\Class\CCollisionableObject.cpp">
       <Filter>ソース ファイル\Engine\Class</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>ソース ファイル\Engine\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Class\CGameObject.h">

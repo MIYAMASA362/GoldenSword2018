@@ -90,7 +90,7 @@ bool Collision::SphereVsSphere( ShapeSphere& Sphere0, ShapeSphere& Sphere1 )
 {
 	const float SquaredDist = Squared( Sphere0.Pos.x - Sphere1.Pos.x ) + Squared( Sphere0.Pos.y - Sphere1.Pos.y ) + Squared( Sphere0.Pos.z - Sphere1.Pos.z );
 
-	if( ( Sphere0.Radius + Sphere1.Radius ) * ( Sphere0.Radius + Sphere1.Radius ) < SquaredDist )
+	if( ( Sphere0.Radius + Sphere1.Radius ) * ( Sphere0.Radius + Sphere1.Radius ) >= SquaredDist )
 	{ // hit 
 		return true;
 	}
