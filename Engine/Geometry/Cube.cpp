@@ -12,61 +12,84 @@
 //===============================================
 //	グローバル
 //===============================================
-static float g_Angle;
+static D3DCOLOR g_CubeColor = D3DCOLOR_RGBA(255, 0, 255, 255);
 
-//-------------------------------------
-//	オブジェクト登録
-//-------------------------------------
-static GameObject CubeObject
-(
-	&Transform
-	(
-		D3DXVECTOR3(5.0f, 5.0f, 0.0f),
-		D3DXVECTOR3(5.0f, 5.0f, 5.0f),
-		D3DXVECTOR3(D3DXToRadian(0), D3DXToRadian(0), D3DXToRadian(0)),
-		g_CubeColor
-	),
-	&Texture
-	(
-		CubeTexture,
-		{ 0,0 },
-		{ 256,256 }
-	)
-);
+static CubeVertex3D Cube[] =
+{
+	//正面
+	{ { -0.5f,	 0.5f,	-0.5f },{ 0.0f,0.0f,-1.0f }, g_CubeColor,{ 0,	0 } },
+	{ { 0.5f,	 0.5f,	-0.5f },{ 0.0f,0.0f,-1.0f }, g_CubeColor,{ 0.25, 0 } },
+	{ { -0.5f,	-0.5f,	-0.5f },{ 0.0f,0.0f,-1.0f }, g_CubeColor,{ 0,	 0.25 } },
 
+	{ { 0.5f,	 0.5f,	-0.5f },{ 0.0f,0.0f,-1.0f }, g_CubeColor,{ 0.25, 0 } },
+	{ { 0.5f,	-0.5f,	-0.5f },{ 0.0f,0.0f,-1.0f }, g_CubeColor,{ 0.25, 0.25 } },
+	{ { -0.5f,	-0.5f,	-0.5f },{ 0.0f,0.0f,-1.0f }, g_CubeColor,{ 0,	0.25 } },
+
+	//上面
+	{ { -0.5f,	 0.5f,	 0.5f },{ 0.0f,1.0f,0.0f }, g_CubeColor,{ 0.25, 0 } },
+	{ { 0.5f,	 0.5f,	 0.5f },{ 0.0f,1.0f,0.0f }, g_CubeColor,{ 0.5, 0 } },
+	{ { -0.5f,	 0.5f,	-0.5f },{ 0.0f,1.0f,0.0f }, g_CubeColor,{ 0.25, 0.25 } },
+
+	{ { 0.5f,	 0.5f,	 0.5f },{ 0.0f,1.0f,0.0f }, g_CubeColor,{ 0.5, 0 } },
+	{ { 0.5f,	 0.5f,	-0.5f },{ 0.0f,1.0f,0.0f }, g_CubeColor,{ 0.5, 0.25 } },
+	{ { -0.5f,	 0.5f,	-0.5f },{ 0.0f,1.0f,0.0f }, g_CubeColor,{ 0.25, 0.25 } },
+
+	//右面
+	{ { 0.5f,	 0.5f,	-0.5f },{ 1.0f,0.0f,0.0f }, g_CubeColor,{ 0.5, 0 } },
+	{ { 0.5f,	 0.5f,	 0.5f },{ 1.0f,0.0f,0.0f }, g_CubeColor,{ 0.75, 0 } },
+	{ { 0.5f,	-0.5f,  -0.5f },{ 1.0f,0.0f,0.0f }, g_CubeColor,{ 0.5, 0.25 } },
+
+	{ { 0.5f,	 0.5f,	0.5f },{ 1.0f,0.0f,0.0f }, g_CubeColor,{ 0.75, 0 } },
+	{ { 0.5f,	-0.5f,	0.5f },{ 1.0f,0.0f,0.0f }, g_CubeColor,{ 0.75,0.25 } },
+	{ { 0.5f,	-0.5f, -0.5f },{ 1.0f,0.0f,0.0f }, g_CubeColor,{ 0.5,0.25 } },
+
+	//左面
+	{ { -0.5f,	 0.5f,	 0.5f },{ -1.0f,0.0f,0.0f }, g_CubeColor,{ 0.75, 0 } },
+	{ { -0.5f,	 0.5f,	-0.5f },{ -1.0f,0.0f,0.0f }, g_CubeColor,{ 1, 0 } },
+	{ { -0.5f,	-0.5f,   0.5f },{ -1.0f,0.0f,0.0f }, g_CubeColor,{ 0.75, 0.25 } },
+
+	{ { -0.5f,	 0.5f, -0.5f },{ -1.0f,0.0f,0.0f }, g_CubeColor,{ 1, 0 } },
+	{ { -0.5f,	-0.5f, -0.5f },{ -1.0f,0.0f,0.0f }, g_CubeColor,{ 1, 0.25 } },
+	{ { -0.5f,	-0.5f,  0.5f },{ -1.0f,0.0f,0.0f }, g_CubeColor,{ 0.75,0.25 } },
+
+	//裏面
+	{ { 0.5f,	 0.5f, 0.5f },{ 0.0f,0.0f,1.0f }, g_CubeColor,{ 0,0.25 } },
+	{ { -0.5f,	 0.5f, 0.5f },{ 0.0f,0.0f,1.0f }, g_CubeColor,{ 0.25,0.25 } },
+	{ { 0.5f,	-0.5f, 0.5f },{ 0.0f,0.0f,1.0f }, g_CubeColor,{ 0,0.5 } },
+
+	{ { -0.5f,	 0.5f, 0.5f },{ 0.0f,0.0f,1.0f }, g_CubeColor,{ 0.25,0.25 } },
+	{ { -0.5f,	-0.5f, 0.5f },{ 0.0f,0.0f,1.0f }, g_CubeColor,{ 0.25,0.5 } },
+	{ { 0.5f,	-0.5f, 0.5f },{ 0.0f,0.0f,1.0f }, g_CubeColor,{ 0,0.5 } },
+
+	//下面
+	{ { -0.5f,	 -0.5f,	-0.5f },{ 0.0f,-1.0f,0.0f }, g_CubeColor,{ 0.25,0.25 } },
+	{ { 0.5f,	 -0.5f,	-0.5f },{ 0.0f,-1.0f,0.0f }, g_CubeColor,{ 0.5,0.25 } },
+	{ { -0.5f,	 -0.5f,	 0.5f },{ 0.0f,-1.0f,0.0f }, g_CubeColor,{ 0.25,0.5 } },
+
+	{ { 0.5f,	 -0.5f,	-0.5f },{ 0.0f,-1.0f,0.0f }, g_CubeColor,{ 0.5,0.25 } },
+	{ { 0.5f,	 -0.5f,	 0.5f },{ 0.0f,-1.0f,0.0f }, g_CubeColor,{ 0.5,0.5 } },
+	{ { -0.5f,	 -0.5f,	 0.5f },{ 0.0f,-1.0f,0.0f }, g_CubeColor,{ 0.25,0.5 } },
+};
 //===============================================
-//	関数
+//	関数			function
 //===============================================
 
 //-------------------------------------
-//	初期化
+//	キューブ色
 //-------------------------------------
-void Cube_Initialize()
+void Set_CubeColor(D3DCOLOR Color)
 {
-
+	g_CubeColor = Color;
+	for(int i = 0; i < sizeof(Cube)/sizeof(Cube[0]); i++)
+	{
+		Cube[i].Color = g_CubeColor;
+	}
 }
 
 //-------------------------------------
-//	更新
+//	モデル取得
 //-------------------------------------
-void Cube_Update()
+void* GetModel_Cube()
 {
-	CubeObject.transform.Rotation.y += D3DXToRadian(5);
-}
-
-//-------------------------------------
-//	描画
-//-------------------------------------
-void Cube_Render()
-{
-	Lighting_SetLight();
-	CubeObject.render.Begin(FVF_CUBE_VERTEX3D,CUBE_PRIMITIVE_TYPE, &Cube[0],sizeof(CubeVertex3D),CUBE_PRIMITIVE_NUM);
-}
-
-//-------------------------------------
-//	終了
-//-------------------------------------
-void Cube_Finalize()
-{
-
+	return &Cube[0];
 }

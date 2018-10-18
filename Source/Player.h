@@ -11,6 +11,7 @@
 #include<d3dx9.h>
 
 //Class
+#include"CGameObject.h"
 #include"CCamera.h"
 
 //===============================================
@@ -37,6 +38,7 @@ class PlayerCamera:public Camera
 private:
 
 public:
+	
 	void Initialize();
 	void Update();
 };
@@ -44,7 +46,7 @@ public:
 //-------------------------------------
 //	ÉvÉåÉCÉÑÅ[
 //-------------------------------------
-class Player
+class Player:public GameObject
 {
 private:
 

@@ -12,6 +12,8 @@
 #include"Sprite.h"
 #include"Animation.h"
 
+#include"Cube.h"
+
 //===============================================
 //	Render　クラス
 //===============================================
@@ -61,9 +63,16 @@ bool Render::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UI
 
 	MtxWorld *= MtxScale  * MtxRotate * MtxTransform;
 
-
 	System_GetDevice()->SetTransform(D3DTS_WORLD, &MtxWorld);	//デバイスへ登録
 	System_GetDevice()->SetFVF(SetFVF);
+
+	if(SetFVF & D3DFVF_DIFFUSE)
+	{
+		if(Model == GetModel_Cube())
+		{
+			Set_CubeColor(this->pTransform->Color);
+		}
+	}
 
 	if (pTexture == NULL || pTexture->Texture_index == TEXTURE_NONE)
 	{

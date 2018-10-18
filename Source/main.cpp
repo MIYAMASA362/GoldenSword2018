@@ -69,7 +69,6 @@ void Main_Initialize(void)
 void Main_UpdateBegin(void)
 {
 	MtxTransformation_Update();
-	Cube_Update();
 
 	CTeamProt_Update();
 	Bullet_Update();
@@ -83,7 +82,6 @@ void Main_Render(void)
 {
 	
 	MtxTransformation_Render();
-	Cube_Render();
 	CTeamProt_Render();
 	uiSprite.Begin(R2D_SPRITE_ROTATE);
 	Bullet_Render();
@@ -105,4 +103,5 @@ void Main_UpdateEnd()
 void Main_Finalize(void)
 {
 	Player_Finalize();
+	CTeamProt_Finalize();
 }

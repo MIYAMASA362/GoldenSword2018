@@ -202,6 +202,10 @@
     <ClCompile Include="Engine\System\system_timer.cpp" />
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp" />
     <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp" />
+    <ClCompile Include="Geometry.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\cTeam\CArmorObject.cpp" />
     <ClCompile Include="Source\cTeam\CBodyObject.cpp" />

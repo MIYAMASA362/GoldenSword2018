@@ -118,7 +118,7 @@ void Player_Update(void)
 
 	g_PlayerCamera.Update();
 
-	if (JoyconInput_IsTrigger(JOYCON_BUTTON_INDEX_R_SR))
+	if (JoyconInput_IsTrigger(JOYCON_BUTTON_INDEX_R_SR) || Keyboard_IsTrigger(DIK_F))
 	{
 		Bullet_Create(g_Player.Position, vecDir,BULLET_NORMAL);
 	}
@@ -177,7 +177,13 @@ void PlayerCamera::Initialize()
 //-------------------------------------
 void PlayerCamera::Update()
 {
+
+
+
 #if !defined(DISABLE_JOYCON) && !defined(DISABLE_GAMEPAD)
+
+
+
 	this->position = Player_GetPlayer()->Position;											// カメラ位置をプレイヤー座標に同期
 	this->at = Player_GetPlayer()->Position + Player_GetPlayer()->vecDir * 5.0f;		// カメラ注視点をプレイヤー座標とプレイヤー視点方向から算出
 	

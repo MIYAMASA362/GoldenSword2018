@@ -6,6 +6,11 @@
 #ifndef ARMOROBJECT_H
 #define ARMOROBJECT_H
 
+#include<d3dx9.h>
+#include<vector>
+
+using namespace std;
+
 //Class
 #include"CGameObject.h"
 #include"CCollisionableObject.h"
@@ -17,12 +22,16 @@ class ArmarObject :public GameObject
 {
 private:
 	D3DXVECTOR3 Speed;
-	Collision mCollision;
+	
 	int Count;
 public:
-	ShapeSphere ColShape;
+	static vector<ArmarObject*> g_pIndex;
+	static void g_Update();
+	static void g_Rednder();
+
 	bool bBreak;		//バラバラフラグ　True(バラバラになる)
 	
+	ArmarObject(Transform* pTransform) :ArmarObject(pTransform, &Texture(TEXTURE_NONE, { 0,0 }, { 0,0 })) {};
 	ArmarObject(Transform* pTransform, Texture* pTexture);
 	void Update();		//更新処理
 	
