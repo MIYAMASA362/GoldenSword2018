@@ -16,13 +16,14 @@
 #include"CGameObject.h"
 #include"CCollisionableObject.h"
 
+#define BULLET_MAX (256)
+
 //===============================================
 //	ç\ë¢ëÃ
 //===============================================
 enum BULLET_TYPE
 {
 	BULLET_NORMAL,
-	BULLET_MAX
 };
 
 //===============================================

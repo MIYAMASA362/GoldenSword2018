@@ -7,6 +7,9 @@
 #define CRENDER_H
 
 #include<d3dx9.h>
+
+//Class
+#include"Component.h"
 #include"CTransform.h"
 #include"CTexture.h"
 #include"CAnimation.h"
@@ -46,7 +49,18 @@ typedef enum RENDER2DANIMA_TYPE
 //-------------------------------------
 //	Render
 //-------------------------------------
-class Render
+class Render:public Component
+{
+private:
+
+public:
+
+};
+
+//-------------------------------------
+//	Render3D
+//-------------------------------------
+class Render3D:public Render
 {
 private:
 
@@ -54,19 +68,17 @@ public:
 	Transform*	pTransform;
 	Texture*	pTexture;
 
-
 	//コンストラクタ
-	Render();
-	Render(Transform* pTransform, Texture* pTexture);
+	Render3D();
+	Render3D(Transform* pTransform, Texture* pTexture);
 
 	bool Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UINT DataSize, UINT PrimitiveCount);	//描画開始
 };
-typedef Render Render3D;
 
 //-------------------------------------
 //	Render2D
 //-------------------------------------
-class Render2D
+class Render2D:public Render
 {
 private:
 

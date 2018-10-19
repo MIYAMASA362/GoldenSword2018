@@ -180,7 +180,13 @@
     <ClCompile Include="Engine\Class\CCollisionableObject.cpp">
       <Filter>ソース ファイル\Engine\Class</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry.cpp">
+    <ClCompile Include="Engine\Internal\XModel.cpp">
+      <Filter>ソース ファイル\Engine\Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Geometry\Debug_Sphere.cpp">
+      <Filter>ソース ファイル\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Geometry\Geometry.cpp">
       <Filter>ソース ファイル\Engine\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
@@ -304,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Class\CCollisionableObject.h">
       <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Internal\XModel.h">
+      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Geometry\Debug_Sphere.h">
+      <Filter>ソース ファイル\Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

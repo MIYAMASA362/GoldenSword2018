@@ -37,4 +37,7 @@ typedef struct Cube_Vertex3D_tag
 void Set_CubeColor(D3DCOLOR Color);
 void* GetModel_Cube();
 
+void Cube_Initialize();
+void Cube_Render();
+void Cube_Finalize();
 #endif

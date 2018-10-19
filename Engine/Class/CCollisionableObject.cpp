@@ -1,6 +1,6 @@
 //
 //	CCollisionableObject.cpp
-//		Author:	DATE:
+//		Author:HASHIMOTO	DATE:2018/10/19
 //===============================================
 //	•ÏXŽÒ Changed By
 //		Name:	DATE:
@@ -88,9 +88,9 @@ ShapeCuboid::~ShapeCuboid()
 
 bool Collision::SphereVsSphere( ShapeSphere& Sphere0, ShapeSphere& Sphere1 )
 {
-	const float SquaredDist = Squared( Sphere0.Pos.x - Sphere1.Pos.x ) + Squared( Sphere0.Pos.y - Sphere1.Pos.y ) + Squared( Sphere0.Pos.z - Sphere1.Pos.z );
-
-	if( ( Sphere0.Radius + Sphere1.Radius ) * ( Sphere0.Radius + Sphere1.Radius ) >= SquaredDist )
+	D3DXVECTOR3 vecLength = Sphere1.Pos - Sphere0.Pos;
+	FLOAT fLength = D3DXVec3Length(&vecLength);
+	if( ( Sphere0.Radius + Sphere1.Radius )> fLength)
 	{ // hit 
 		return true;
 	}

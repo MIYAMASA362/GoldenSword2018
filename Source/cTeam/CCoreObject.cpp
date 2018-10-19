@@ -11,6 +11,7 @@
 #include"CCollisionableObject.h"
 #include"Bullet.h"
 
+#include "Debug_Sphere.h"
 std::vector<CoreObject*> CoreObject::g_pIndex;
 
 //===============================================
@@ -102,13 +103,17 @@ void CoreObject::g_Update()
 //-------------------------------------
 void CoreObject::g_Render()
 {
+	DebugBufferManager::Sphere_BatchBegin();
 	for (int i = 0; i< g_pIndex.size(); i++)
 	{
 		if (g_pIndex.at(i)->pArmar_Index.size() > 0)
 		{
 			g_pIndex.at(i)->render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+
+			DebugBufferManager::BatchDrawSphere(&g_pIndex.at(i)->ColShape);
 		}
 	}
+	DebugBufferManager::Sphere_BatchRun();
 }
 
 

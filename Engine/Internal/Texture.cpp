@@ -17,7 +17,7 @@
 typedef struct TEXTUREDATA_INDEX
 {
 	int TexName;								//テクスチャ名
-	char FileAddress[TEXTURE_FILENAME_MAX];		//アドレス
+ 	const char FileAddress[TEXTURE_FILENAME_MAX];		//アドレス
 	UINT width;									//テクスチャ幅
 	UINT height;								//テクスチャ高さ
 }TEXTUREDATA_INDEX;

@@ -66,8 +66,6 @@ void Camera::Initialize()
 //-------------------------------------
 void Camera::Update()
 {
-
-
 	//------------------------------------
 	//	カメラ
 	//------------------------------------
@@ -76,12 +74,15 @@ void Camera::Update()
 	D3DXVECTOR3 front = this->forward;
 	D3DXVECTOR3 right = this->right;
 
-	if(Keyboard_IsPress(DIK_LSHIFT))
+	if(Keyboard_IsPress(DIK_LCONTROL))
 	{
 		if(Mouse_IsRightDown())
 		{
 			D3DXMATRIX mtxRotation;
-			D3DXMatrixRotationAxis(&mtxRotation,&this->at,Mouse_IsAccelerationX() * 0.001f);
+			D3DXVECTOR3 AxisVec = this->at;
+			AxisVec.x = 0;
+			AxisVec.z = 0;
+			D3DXMatrixRotationAxis(&mtxRotation,&AxisVec,Mouse_IsAccelerationX() * 0.001f);
 			D3DXVec3TransformNormal(&this->forward, &this->forward, &mtxRotation);	//ベクトル座標変換
 			D3DXVec3TransformNormal(&this->right, &this->right, &mtxRotation);
 			D3DXVec3Cross(&this->up, &this->right, &this->forward);

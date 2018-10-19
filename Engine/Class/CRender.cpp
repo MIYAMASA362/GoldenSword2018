@@ -21,7 +21,7 @@
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-Render::Render()
+Render3D::Render3D()
 {
 	pTransform = NULL;
 	pTexture = NULL;
@@ -30,7 +30,7 @@ Render::Render()
 //-------------------------------------
 //	コンストラクタ	ポインタ型
 //-------------------------------------
-Render::Render(Transform* pTransform, Texture* pTexture)
+Render3D::Render3D(Transform* pTransform, Texture* pTexture)
 {
 	this->pTransform = pTransform;
 	this->pTexture = pTexture;
@@ -39,7 +39,7 @@ Render::Render(Transform* pTransform, Texture* pTexture)
 //-------------------------------------
 //	描画
 //-------------------------------------
-bool Render::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UINT DataSize, UINT PrimitiveCount)
+bool Render3D::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, UINT DataSize, UINT PrimitiveCount)
 {
 	if (pTransform == NULL) return false;
 

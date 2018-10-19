@@ -183,6 +183,8 @@
     <ClCompile Include="Engine\Class\CUI.cpp" />
     <ClCompile Include="Engine\Geometry\Cube.cpp" />
     <ClCompile Include="Engine\Geometry\Cube_Debug.cpp" />
+    <ClCompile Include="Engine\Geometry\Debug_Sphere.cpp" />
+    <ClCompile Include="Engine\Geometry\Geometry.cpp" />
     <ClCompile Include="Engine\Geometry\Grid.cpp" />
     <ClCompile Include="Engine\Internal\Animation.cpp" />
     <ClCompile Include="Engine\Internal\Collision.cpp" />
@@ -190,6 +192,10 @@
     <ClCompile Include="Engine\Internal\Fade.cpp" />
     <ClCompile Include="Engine\Internal\Sprite.cpp" />
     <ClCompile Include="Engine\Internal\Texture.cpp" />
+    <ClCompile Include="Engine\Internal\XModel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Engine\System\Debug_Circle.cpp" />
     <ClCompile Include="Engine\System\Debug_font.cpp" />
     <ClCompile Include="Engine\System\Dualshock4.c" />
@@ -202,10 +208,6 @@
     <ClCompile Include="Engine\System\system_timer.cpp" />
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp" />
     <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp" />
-    <ClCompile Include="Geometry.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\cTeam\CArmorObject.cpp" />
     <ClCompile Include="Source\cTeam\CBodyObject.cpp" />
@@ -233,6 +235,7 @@
     <ClInclude Include="Engine\Class\CUI.h" />
     <ClInclude Include="Engine\Geometry\Cube.h" />
     <ClInclude Include="Engine\Geometry\Cube_Debug.h" />
+    <ClInclude Include="Engine\Geometry\Debug_Sphere.h" />
     <ClInclude Include="Engine\Geometry\Grid.h" />
     <ClInclude Include="Engine\Internal\Animation.h" />
     <ClInclude Include="Engine\Internal\Collision.h" />
@@ -240,6 +243,10 @@
     <ClInclude Include="Engine\Internal\Fade.h" />
     <ClInclude Include="Engine\Internal\Sprite.h" />
     <ClInclude Include="Engine\Internal\Texture.h" />
+    <ClInclude Include="Engine\Internal\XModel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Engine\System\Debug_Circle.h" />
     <ClInclude Include="Engine\System\Debug_font.h" />
     <ClInclude Include="Engine\System\Dualshock4.h" />
