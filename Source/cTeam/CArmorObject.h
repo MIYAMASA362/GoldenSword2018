@@ -25,14 +25,12 @@ private:
 	
 	int Count;
 public:
-	static vector<ArmarObject*> g_pIndex;
-	static void g_Update();
-	static void g_Rednder();
 
 	bool bBreak;		//バラバラフラグ　True(バラバラになる)
 	
 	ArmarObject(Transform* pTransform) :ArmarObject(pTransform, &Texture(TEXTURE_NONE, { 0,0 }, { 0,0 })) {};
 	ArmarObject(Transform* pTransform, Texture* pTexture);
+	
 	void Update();		//更新処理
 	
 };

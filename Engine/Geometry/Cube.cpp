@@ -14,7 +14,7 @@
 //===============================================
 //	ÉOÉçÅ[ÉoÉã
 //===============================================
-static D3DCOLOR g_CubeColor = D3DCOLOR_RGBA(255, 0, 255, 255);
+static D3DCOLOR g_CubeColor = D3DCOLOR_RGBA(255, 255, 255, 255);
 
 static CubeVertex3D Cube[] =
 {

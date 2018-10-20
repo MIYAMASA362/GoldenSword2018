@@ -1,4 +1,4 @@
-//
+﻿//
 //	Debug_Circle.h
 //		USER:YU NISHIMAKI		DATE:2018/10/18
 //===============================================
@@ -8,6 +8,7 @@
 // シングルトンっぽい感じに記述を変更.　直方体に関しては未実装.
 //
 //-----------------------------------------------
+#pragma once
 #ifndef DEBUG_PRIMITIVE_H
 #define DEBUG_PRIMITIVE_H
 
@@ -22,8 +23,6 @@ typedef struct DebugVertex_tag
 
 class DebugBufferManager
 {
-
-
 private:
 	static LPDIRECT3DVERTEXBUFFER9 pVertexBuffer;		// 頂点バッファ
 	static LPDIRECT3DINDEXBUFFER9 pIndexBuffer;		// インデックスバッファ

@@ -22,14 +22,9 @@ class CoreObject:public GameObject
 {
 private:
 	vector<ArmarObject*> pArmar_Index;	//アーマーオブジェクト
-	BodyObject*		pBodyObject;
-	Collision mCollision;
+	BodyObject*	pBodyObject;
 	
 public:
-	static vector<CoreObject*> g_pIndex;//インデックス
-	static void g_Update();				//全体更新
-	static void g_Render();				//全体描画
-
 	ShapeSphere ColShape;
 	CoreObject(Transform* pTransform, Texture* pTexture);
 	~CoreObject();
@@ -38,6 +33,7 @@ public:
 	void Set(ArmarObject* pArmarObject);
 	void Set(ArmarObject* pArmarObject, BodyObject* pBodyObject);
 	void Update();
+	void Render();
 };
 
 #endif // !CCOREOBJECT_H

@@ -7,7 +7,10 @@
 #define JOYCON_INPUT_H
 
 #include <Windows.h>
+#ifndef DIRECTINPUT_VERSION
 #define DIRECTINPUT_VERSION		(0x0800)
+#endif // !DIRECTINPUT_VERSION
+
 #include <dinput.h>
 
 

@@ -161,16 +161,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Class\Camera.cpp">
+    <ClCompile Include="CEnemy.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Engine\Class\CAnimation.cpp" />
     <ClCompile Include="Engine\Class\CCamera.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Engine\Class\CCollision.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -207,7 +203,6 @@
     <ClCompile Include="Engine\System\System.cpp" />
     <ClCompile Include="Engine\System\system_timer.cpp" />
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp" />
-    <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\cTeam\CArmorObject.cpp" />
     <ClCompile Include="Source\cTeam\CBodyObject.cpp" />
@@ -217,12 +212,12 @@
     <ClCompile Include="Source\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Class\CAnimation.h" />
-    <ClInclude Include="Engine\Class\CCamera.h">
+    <ClInclude Include="CEnemy.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Engine\Class\CCollision.h">
+    <ClInclude Include="Engine\Class\CAnimation.h" />
+    <ClInclude Include="Engine\Class\CCamera.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -259,9 +254,7 @@
     <ClInclude Include="Engine\System\System.h" />
     <ClInclude Include="Engine\System\system_timer.h" />
     <ClInclude Include="Engine\UnImplemented\Lighting.h" />
-    <ClInclude Include="Engine\UnImplemented\MtxTransform.h" />
     <ClInclude Include="Source\Bullet.h" />
-    <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\common.h" />
     <ClInclude Include="Source\cTeam\CArmorObject.h" />
     <ClInclude Include="Source\cTeam\CBodyObject.h" />

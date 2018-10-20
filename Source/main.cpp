@@ -5,25 +5,19 @@
 #include"common.h"
 #include<time.h>
 #include"System.h"
-#include"input.h"
-#include"Texture.h"
-#include"Fade.h"
-#include"FileData.h"
-#include"Sprite.h"
 
 #include"Cube.h"
-#include"MtxTransform.h"
 #include"Lighting.h"
 
 #include"CTeamProt.h"
 #include"Player.h"
 #include"Bullet.h"
+#include"XModel.h"
+
+#define MODEL_FILE ()
 
 //Class
 #include"CUI.h"
-
-#define VECTOR3_ONE (D3DXVECTOR3(1.0f,1.0f,1.0f))
-#define VECTOR3(x)  (D3DXVECTOR3(x,x,x))
 
 //===============================================
 //	ÉOÉçÅ[ÉoÉãïœêî
@@ -51,16 +45,18 @@ static UI uiSprite(
 //=============================================================
 void Main_Initialize(void)
 {
-	MtxTransformation_Initialize();
 	Lighting_Initialize();
 
 	CTeamProt_Initialize();
 	Bullet_Initialize();
 	Player_Initialize();
+	Cube_Initialize();
 
 	uiSprite = uiSprite;
 
-	srand(time(NULL));
+	srand((UINT)time(NULL));
+
+	XModel_Load("Models/Ps4_Controller2.x");
 }
 
 //=============================================================
@@ -68,11 +64,10 @@ void Main_Initialize(void)
 //=============================================================
 void Main_UpdateBegin(void)
 {
-	MtxTransformation_Update();
-
 	CTeamProt_Update();
 	Bullet_Update();
 	Player_Update();
+
 }
 
 //=============================================================
@@ -80,12 +75,13 @@ void Main_UpdateBegin(void)
 //=============================================================
 void Main_Render(void)
 {
-	
-	MtxTransformation_Render();
+	XModel_Render();
+
 	CTeamProt_Render();
-	uiSprite.Begin(R2D_SPRITE_ROTATE);
+	uiSprite.render.Begin(R2D_SPRITE_ROTATE);
 	Bullet_Render();
 	Player_Render();
+	
 }
 
 

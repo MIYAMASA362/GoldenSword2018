@@ -5,7 +5,7 @@
 #include<d3dx9.h>
 #include"System.h"
 #include"Grid.h"
-#include"Camera.h"
+#include"CCamera.h"
 
 //===============================================
 //	É}ÉNÉç	

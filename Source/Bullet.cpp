@@ -117,9 +117,9 @@ bool Bullet_IsEnable(int index)
 	return g_Bullet[index].GetEnable();
 }
 
-ShapeSphere* Bullet_ColShape(int index)
+ShapeSphere Bullet_ColShape(int index)
 {
-	return &g_Bullet[index].ColSphape;
+	return g_Bullet[index].ColSphape;
 }
 
 

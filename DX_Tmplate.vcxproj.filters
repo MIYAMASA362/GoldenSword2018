@@ -16,9 +16,6 @@
     <Filter Include="ソース ファイル\Engine">
       <UniqueIdentifier>{31451141-7c45-4010-a4d8-6a42c07a8cc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Engine\Class">
-      <UniqueIdentifier>{a4e7c9d1-506b-472b-bdc1-d2b6557ad4d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Engine\Internal">
       <UniqueIdentifier>{4cdf8923-b884-4940-b126-90954f77f205}</UniqueIdentifier>
     </Filter>
@@ -30,9 +27,6 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\Engine\System">
       <UniqueIdentifier>{9aeb6514-da1b-4f15-8aff-919d66859202}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Engine\Class">
-      <UniqueIdentifier>{81d88d5e-29ff-490d-b342-6c1c968dee63}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\Engine\Internal">
       <UniqueIdentifier>{eb4017fe-07af-4ee1-b675-b591b2aae101}</UniqueIdentifier>
@@ -55,11 +49,29 @@
     <Filter Include="ソース ファイル\Engine\Geometry">
       <UniqueIdentifier>{d0abcb5c-f82f-471a-ae13-2cb8a68ce600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Assets\cTeam">
-      <UniqueIdentifier>{9e0b0f2e-a4d3-46bf-bc1d-15b825be0d12}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Assets\cTeam">
       <UniqueIdentifier>{86006bc0-a2f0-4f0b-b1d4-279d82304429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Assets\Class">
+      <UniqueIdentifier>{9e0b0f2e-a4d3-46bf-bc1d-15b825be0d12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Engine\System\InputDevice">
+      <UniqueIdentifier>{6e3ae17a-4d10-4113-b029-2703a0401029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Engine\System\Debug">
+      <UniqueIdentifier>{23d003da-0568-4d6c-8e38-1edc4b051352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\System\InputDevice">
+      <UniqueIdentifier>{ffcb871e-8ccc-4f02-b581-31402e8519f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\System\Debug">
+      <UniqueIdentifier>{be7bf58c-6dd8-4246-b892-cb116efe1282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Engine\Class">
+      <UniqueIdentifier>{a4e7c9d1-506b-472b-bdc1-d2b6557ad4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Engine\Class">
+      <UniqueIdentifier>{9d2c04ce-f8b4-4954-a8bd-189ac0551a18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,16 +105,7 @@
     <ClCompile Include="Engine\Internal\Texture.cpp">
       <Filter>ソース ファイル\Engine\Internal</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\System\Debug_Circle.cpp">
-      <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\System\Debug_font.cpp">
-      <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\System\FileData.cpp">
-      <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\System\Input.cpp">
       <Filter>ソース ファイル\Engine\System</Filter>
     </ClCompile>
     <ClCompile Include="Engine\System\sound.cpp">
@@ -123,15 +126,6 @@
     <ClCompile Include="Engine\Class\CSprite.cpp">
       <Filter>ソース ファイル\Engine\Class</Filter>
     </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\System\Dualshock4.c">
-      <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\System\Dualshock4Private.c">
-      <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\UnImplemented\Lighting.cpp">
       <Filter>ソース ファイル\Engine\3DWorld</Filter>
     </ClCompile>
@@ -142,19 +136,16 @@
       <Filter>ソース ファイル\Engine\Class</Filter>
     </ClCompile>
     <ClCompile Include="Source\cTeam\CArmorObject.cpp">
-      <Filter>ソース ファイル\Assets\cTeam</Filter>
+      <Filter>ソース ファイル\Assets\Class</Filter>
     </ClCompile>
     <ClCompile Include="Source\cTeam\CBodyObject.cpp">
-      <Filter>ソース ファイル\Assets\cTeam</Filter>
+      <Filter>ソース ファイル\Assets\Class</Filter>
     </ClCompile>
     <ClCompile Include="Source\cTeam\CCoreObject.cpp">
-      <Filter>ソース ファイル\Assets\cTeam</Filter>
+      <Filter>ソース ファイル\Assets\Class</Filter>
     </ClCompile>
     <ClCompile Include="Source\cTeam\CTeamProt.cpp">
-      <Filter>ソース ファイル\Assets\cTeam</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Class\CCollision.cpp">
-      <Filter>ソース ファイル\Engine\Class</Filter>
+      <Filter>ソース ファイル\Assets\Class</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>ソース ファイル\Assets</Filter>
@@ -165,16 +156,7 @@
     <ClCompile Include="Source\Bullet.cpp">
       <Filter>ソース ファイル\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\System\joycon_input.cpp">
-      <Filter>ソース ファイル\Engine\System</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Class\CCamera.cpp">
-      <Filter>ソース ファイル\Engine\3DWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\UnImplemented\MtxTransform.cpp">
-      <Filter>ソース ファイル\Engine\3DWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Class\Camera.cpp">
       <Filter>ソース ファイル\Engine\3DWorld</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Class\CCollisionableObject.cpp">
@@ -183,32 +165,38 @@
     <ClCompile Include="Engine\Internal\XModel.cpp">
       <Filter>ソース ファイル\Engine\Internal</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Geometry\Debug_Sphere.cpp">
-      <Filter>ソース ファイル\Assets</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Geometry\Geometry.cpp">
       <Filter>ソース ファイル\Engine\Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="CEnemy.cpp">
+      <Filter>ソース ファイル\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\Input.cpp">
+      <Filter>ソース ファイル\Engine\System\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\joycon_input.cpp">
+      <Filter>ソース ファイル\Engine\System\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\Dualshock4Private.c">
+      <Filter>ソース ファイル\Engine\System\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\Dualshock4.c">
+      <Filter>ソース ファイル\Engine\System\InputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\Debug_Circle.cpp">
+      <Filter>ソース ファイル\Engine\System\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\System\Debug_font.cpp">
+      <Filter>ソース ファイル\Engine\System\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Geometry\Debug_Sphere.cpp">
+      <Filter>ソース ファイル\Engine\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Class\CGameObject.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Class\CRender.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Class\CTexture.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Class\CTransform.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Class\CUI.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Internal\Collision.h">
-      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Internal\Component.h">
       <Filter>ヘッダー ファイル\Engine\Internal</Filter>
     </ClInclude>
@@ -221,16 +209,7 @@
     <ClInclude Include="Engine\Internal\Texture.h">
       <Filter>ヘッダー ファイル\Engine\Internal</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\System\Debug_Circle.h">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\System\Debug_font.h">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\System\FileData.h">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\System\input.h">
       <Filter>ヘッダー ファイル\Engine\System</Filter>
     </ClInclude>
     <ClInclude Include="Engine\System\sound.h">
@@ -248,29 +227,11 @@
     <ClInclude Include="Engine\Geometry\Grid.h">
       <Filter>ヘッダー ファイル\Engine\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Class\CSprite.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Source\common.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\System\Dualshock4.h">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\System\Dualshock4.hpp">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\System\Dualshock4Private.h">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\UnImplemented\Lighting.h">
       <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Class\CAnimation.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Internal\Animation.h">
       <Filter>ヘッダー ファイル\Engine\Internal</Filter>
@@ -284,9 +245,6 @@
     <ClInclude Include="Source\cTeam\CCoreObject.h">
       <Filter>ヘッダー ファイル\Assets\cTeam</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Class\CCollision.h">
-      <Filter>ヘッダー ファイル\Engine\Class</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Geometry\Cube_Debug.h">
       <Filter>ヘッダー ファイル\Engine\Geometry</Filter>
     </ClInclude>
@@ -299,28 +257,70 @@
     <ClInclude Include="Source\cTeam\CTeamProt.h">
       <Filter>ヘッダー ファイル\Assets\cTeam</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Internal\XModel.h">
+      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>ソース ファイル\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\Dualshock4.h">
+      <Filter>ヘッダー ファイル\Engine\System\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\Dualshock4.hpp">
+      <Filter>ヘッダー ファイル\Engine\System\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\input.h">
+      <Filter>ヘッダー ファイル\Engine\System\InputDevice</Filter>
+    </ClInclude>
     <ClInclude Include="Engine\System\joycon_input.h">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
+      <Filter>ヘッダー ファイル\Engine\System\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\Dualshock4Private.h">
+      <Filter>ヘッダー ファイル\Engine\System\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\Debug_font.h">
+      <Filter>ヘッダー ファイル\Engine\System\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\System\Debug_Circle.h">
+      <Filter>ヘッダー ファイル\Engine\System\Debug</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Class\CCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\UnImplemented\MtxTransform.h">
       <Filter>ヘッダー ファイル\Engine\3DWorld</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Geometry\Debug_Sphere.h">
+      <Filter>ヘッダー ファイル\Engine\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Internal\Collision.h">
+      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CAnimation.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Class\CCollisionableObject.h">
       <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Internal\XModel.h">
-      <Filter>ヘッダー ファイル\Engine\Internal</Filter>
+    <ClInclude Include="Engine\Class\CUI.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Geometry\Debug_Sphere.h">
-      <Filter>ソース ファイル\Assets</Filter>
+    <ClInclude Include="Engine\Class\CGameObject.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CRender.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CSprite.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CTexture.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Class\CTransform.h">
+      <Filter>ヘッダー ファイル\Engine\Class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\System\Dualshock4.def">
-      <Filter>ヘッダー ファイル\Engine\System</Filter>
+      <Filter>ヘッダー ファイル\Engine\System\InputDevice</Filter>
     </None>
   </ItemGroup>
 </Project>

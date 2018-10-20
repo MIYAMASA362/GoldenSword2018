@@ -1,9 +1,10 @@
 //
 //	CRender.cpp
-//		Author:HIROMASA IKEDA	DATE:2018/09/29
+//		Author:HIROMASA IKEDA	DATE:2018/10/19
 //===============================================
 #include<d3dx9.h>
 #include<math.h>
+#include<vector>
 
 #include"CTransform.h"
 #include"CRender.h"
@@ -15,7 +16,28 @@
 #include"Cube.h"
 
 //===============================================
-//	Render　クラス
+//	グローバル変数
+//===============================================
+vector<Render*> Render::g_pIndex;
+
+//===============================================
+//	Render クラス
+//===============================================
+
+//-------------------------------------
+//	コンストラクタ
+//-------------------------------------
+Render::Render()
+{
+	g_pIndex.push_back(this);
+}
+
+//-------------------------------------
+//	描画更新
+//-------------------------------------
+
+//===============================================
+//	Render3D　クラス
 //===============================================
 
 //-------------------------------------
@@ -57,6 +79,7 @@ bool Render3D::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, 
 	D3DXMatrixIdentity(&MtxRotate);
 	D3DXMatrixRotationYawPitchRoll(&MtxRotate,pTransform->Rotation.y,pTransform->Rotation.x,pTransform->Rotation.z);
 
+	//向きを設定
 	D3DXVec3TransformNormal(&this->pTransform->right,&this->pTransform->right,&MtxRotate);
 	D3DXVec3TransformNormal(&this->pTransform->forward,&this->pTransform->forward,&MtxRotate);
 	D3DXVec3Cross(&this->pTransform->up,&this->pTransform->right,&this->pTransform->forward);
@@ -66,6 +89,7 @@ bool Render3D::Begin(DWORD SetFVF, D3DPRIMITIVETYPE PrimitiveType, void* Model, 
 	System_GetDevice()->SetTransform(D3DTS_WORLD, &MtxWorld);	//デバイスへ登録
 	System_GetDevice()->SetFVF(SetFVF);
 
+	//色が設定されいるなら
 	if(SetFVF & D3DFVF_DIFFUSE)
 	{
 		if(Model == GetModel_Cube())

@@ -183,7 +183,7 @@ int Dualshock4OnDeviceInput(HRAWINPUT* RawDataInputPtr)
 		device_state_ptr->Gamepad.Buttons = 0;
 		device_state_ptr->Gamepad.Buttons |= (RawDataPtr[offset + 5] & 0xf0);
 		device_state_ptr->Gamepad.Buttons |= RawDataPtr[offset + 6] << 8;
-		device_state_ptr->Gamepad.Buttons |= RawDataPtr[offset + 7] & 0x1 == 1 ? DUALSHOCK4_BUTTON_PS : 0;
+		device_state_ptr->Gamepad.Buttons |= (RawDataPtr[offset + 7] & 0x1) == 1 ? DUALSHOCK4_BUTTON_PS : 0;
 		device_state_ptr->Gamepad.Buttons |= ((RawDataPtr[offset + 7] & 0x2) == 2) ? DUALSHOCK4_BUTTON_TOUCHPAD : 0;
 
 		// get analog stick data

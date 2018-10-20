@@ -63,6 +63,6 @@ void Bullet_Update();
 void Bullet_Create(D3DXVECTOR3 pos,D3DXVECTOR3 face, BULLET_TYPE type);
 void Bullet_Destroy(int index);
 bool Bullet_IsEnable(int index);
-ShapeSphere* Bullet_ColShape(int index);
+ShapeSphere Bullet_ColShape(int index);
 
 #endif // !BULLET_H

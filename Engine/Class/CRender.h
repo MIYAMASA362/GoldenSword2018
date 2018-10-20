@@ -7,6 +7,7 @@
 #define CRENDER_H
 
 #include<d3dx9.h>
+#include<vector>
 
 //Class
 #include"Component.h"
@@ -49,11 +50,13 @@ typedef enum RENDER2DANIMA_TYPE
 //-------------------------------------
 //	Render
 //-------------------------------------
-class Render:public Component
+class Render
 {
 private:
-
+	static std::vector<Render*> g_pIndex;
 public:
+	Render();
+protected:
 
 };
 

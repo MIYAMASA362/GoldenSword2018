@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\pcuser\desktop\goldensword2018\engine\internal\</FILEPATH>
+      <FILENAME>animation.cpp</FILENAME>
+      <LINE>126</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>'AnimaTex' のローカル宣言は、外部スコープの同じ名前の宣言を隠します。追加情報については、行 '97' ('c:\users\pcuser\desktop\goldensword2018\engine\internal\animation.cpp') の以前の宣言を参照してください。</DESCRIPTION>
+    <FUNCTION>Animation_Score</FUNCTION>
+    <DECORATED>?Animation_Score@@YAXPEAVTransform2@@PEAVTexture@@PEAVAnimation@@H_N3H@Z</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\pcuser\desktop\goldensword2018\engine\internal\</FILEPATH>
+        <FILENAME>animation.cpp</FILENAME>
+        <LINE>97</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\pcuser\desktop\goldensword2018\engine\internal\</FILEPATH>
+      <FILENAME>animation.cpp</FILENAME>
+      <LINE>157</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>6246</DEFECTCODE>
+    <DESCRIPTION>'AnimaTex' のローカル宣言は、外部スコープの同じ名前の宣言を隠します。追加情報については、行 '97' ('c:\users\pcuser\desktop\goldensword2018\engine\internal\animation.cpp') の以前の宣言を参照してください。</DESCRIPTION>
+    <FUNCTION>Animation_Score</FUNCTION>
+    <DECORATED>?Animation_Score@@YAXPEAVTransform2@@PEAVTexture@@PEAVAnimation@@H_N3H@Z</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\pcuser\desktop\goldensword2018\engine\internal\</FILEPATH>
+        <FILENAME>animation.cpp</FILENAME>
+        <LINE>97</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

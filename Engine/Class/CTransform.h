@@ -9,12 +9,26 @@
 #include<d3dx9.h>
 
 //===============================================
+//	MatrixTransform : 行列 クラス
+//===============================================
+class MatrixTransform
+{
+private:
+	D3DXMATRIX MtxWorld;					//ワールド変換行列
+	D3DXMATRIX MtxTransform;				//位置
+	D3DXMATRIX MtxRotation;					//回転
+	D3DXMATRIX MtxScale;					//拡大・縮小
+public:
+	MatrixTransform();
+};
+
+//===============================================
 //	Transform : 3D専用　クラス
 //===============================================
 class Transform
 {
 private:
-
+	D3DXMATRIX* pParent_Matrix = NULL;	//親変換行列
 public :
 	//基本情報
 	D3DXVECTOR3 Position;	//位置
@@ -32,6 +46,9 @@ public :
 	Transform(D3DXVECTOR3 Position, D3DXVECTOR3 Scale, D3DXVECTOR3 Rotation) :Transform(Position, Scale, Rotation, D3DCOLOR_RGBA(255, 255, 255, 255)) {};
 	Transform(D3DXVECTOR3 Position, D3DXVECTOR3 Scale, D3DXVECTOR3 Rotation, D3DCOLOR Color);
 
+	~Transform();
+
+	void Set_ParentMatrix(D3DXMATRIX Matrix);
 };
 
 //===============================================

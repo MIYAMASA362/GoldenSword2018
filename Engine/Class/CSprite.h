@@ -11,11 +11,12 @@
 //===============================================
 //	Sprite クラス
 //===============================================
-class Sprite:public Render2D
+class Sprite
 {
 private:
 
 public:
+	Render2D render;
 	Transform2 transform;	//位置
 	Texture texture;		//テクスチャ
 	Animation animation;	//アニメーションステータス

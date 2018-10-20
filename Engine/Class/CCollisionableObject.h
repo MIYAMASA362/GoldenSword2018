@@ -94,12 +94,12 @@ public:
  * Collsion Class
  */
 
-static class Collision
+class Collision
 {
 public:
 	static bool SphereVsSphere( ShapeSphere& Sphere0, ShapeSphere& Sphere1 );
-	bool CuboidVsSphere( ShapeCuboid& Cuboid, ShapeSphere& Sphere ) {}
-	bool CuboidVsCuboid( ShapeCuboid& Cuboid0, ShapeCuboid& Cuboid1 ) {}
+	bool CuboidVsSphere(ShapeCuboid& Cuboid, ShapeSphere& Sphere) {};
+	bool CuboidVsCuboid(ShapeCuboid& Cuboid0, ShapeCuboid& Cuboid1) {};
 };
 //-------------------------------------
 //	ƒNƒ‰ƒX–¼

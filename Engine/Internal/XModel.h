@@ -40,10 +40,10 @@
 //================================================
 //	ŠÖ”		function
 //================================================
-void XModel_Initialize(const char pFileName[MODEL_FILENAME_MAX]);	//‰Šú‰»
+void XModel_Initialize();	//‰Šú‰»
 void XModel_Finalize();		//I—¹
 
-void XModel_Load();		//ƒ‚ƒfƒ‹“Ç‚İ‚İ
+void XModel_Load(const char* pFileName);		//ƒ‚ƒfƒ‹“Ç‚İ‚İ
 void XModel_Render();	//•`‰æ
 
 

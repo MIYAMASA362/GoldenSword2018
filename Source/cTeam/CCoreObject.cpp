@@ -12,7 +12,6 @@
 #include"Bullet.h"
 
 #include "Debug_Sphere.h"
-std::vector<CoreObject*> CoreObject::g_pIndex;
 
 //===============================================
 //	CoreObject	クラス
@@ -23,7 +22,7 @@ std::vector<CoreObject*> CoreObject::g_pIndex;
 //-------------------------------------
 CoreObject::CoreObject(Transform* pTransform,Texture* pTexture):GameObject(pTransform, pTexture), ColShape(pTransform->Position, 1.0f)
 {
-	this->g_pIndex.push_back(this);
+
 }
 
 void CoreObject::Set(ArmarObject* pArmarObject)
@@ -35,6 +34,7 @@ void CoreObject::Set(ArmarObject* pArmarObject,BodyObject* pBodyObject)
 {
 	this->pArmar_Index.push_back(pArmarObject);
 	this->pBodyObject = pBodyObject;
+	this->Set_Parent(this->pBodyObject);
 }
 
 //-------------------------------------
@@ -66,12 +66,11 @@ void CoreObject::Hit()
 //-------------------------------------
 void CoreObject::Update()
 {
-
 	for (int i = 0; i<BULLET_MAX; i++)
 	{
 		if (Bullet_IsEnable(i))
 		{
-			if (mCollision.SphereVsSphere(ColShape, *Bullet_ColShape(i)))
+			if (Collision::SphereVsSphere(ColShape, Bullet_ColShape(i)))
 			{
 				Hit();
 			}
@@ -80,40 +79,22 @@ void CoreObject::Update()
 
 }
 
-//===============================================
-//	グローバル
-//===============================================
-
 //-------------------------------------
-//	全体更新
+//	描画
 //-------------------------------------
-void CoreObject::g_Update()
+void CoreObject::Render()
 {
-	for(int i= 0; i< g_pIndex.size(); i++)
+	if (this->pArmar_Index.size() > 0)
 	{
-		if(g_pIndex.at(i)->pArmar_Index.size() > 0)
-		{
-			g_pIndex.at(i)->Update();
-		}
+		DebugBufferManager::Sphere_BatchBegin();
+
+		render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+
+		DebugBufferManager::BatchDrawSphere(&this->ColShape);
+
+		DebugBufferManager::Sphere_BatchRun();
 	}
 }
 
-//-------------------------------------
-//	全体描画
-//-------------------------------------
-void CoreObject::g_Render()
-{
-	DebugBufferManager::Sphere_BatchBegin();
-	for (int i = 0; i< g_pIndex.size(); i++)
-	{
-		if (g_pIndex.at(i)->pArmar_Index.size() > 0)
-		{
-			g_pIndex.at(i)->render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-
-			DebugBufferManager::BatchDrawSphere(&g_pIndex.at(i)->ColShape);
-		}
-	}
-	DebugBufferManager::Sphere_BatchRun();
-}
 
 

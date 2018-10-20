@@ -1,6 +1,6 @@
 //
-//	CCollision.cpp
-//		Author:HIROMASA IKEDA	DATE:2018/10/15
+//	CEnemy.cpp
+//		Author:HIROMASA IKEDA	DATE:2018/10/19
 //===============================================
 //	変更者 Changed By
 //		Name:	DATE:
@@ -11,9 +11,11 @@
 //	インクルード	include
 //===============================================
 #include"common.h"
+#include<d3dx9.h>
+#include<vector>
 
 //class
-#include"CCollision.h"
+#include"CEnemy.h"
 
 //===============================================
 //	マクロ定義		define
@@ -23,16 +25,36 @@
 //===============================================
 //	グローバル変数	global
 //===============================================
-
+vector<BodyObject*> pBody_Index;
 
 //===============================================
-//	Collision		class
+//	Enemy		class
 //===============================================
-
 
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
+Enemy::Enemy(Transform* pTransform,Texture* pTexture):GameObject(pTransform,pTexture)
+{
+
+}
+
+//------------------------------------
+//	デストラクタ
+//------------------------------------
+Enemy::~Enemy()
+{
+
+}
+
+//------------------------------------
+//	Bodyを設定
+//------------------------------------
+void Enemy::Add_Body(BodyObject* pBodyObject)
+{
+	pBodyObject->Set_Parent(this);
+	pBody_Index.push_back(pBodyObject);
+}
 
 
 

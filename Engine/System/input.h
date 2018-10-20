@@ -8,7 +8,10 @@
 #include<Windows.h>
 #include<d3dx9.h>
 #define INIGUID
-#define DIRECTINPUT_VERSION (0x0800)
+#ifndef DIRECTINPUT_VERSION
+#define DIRECTINPUT_VERSION (0x800) 
+#endif // !DIRECTINPUT_VERSION
+
 #include<dinput.h>
 
 #include"common.h"

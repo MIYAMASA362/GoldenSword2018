@@ -30,11 +30,12 @@ LPD3DXMESH g_pD3DXMesh;					//メッシュ情報
 
 LPD3DXBUFFER g_pD3DXAdjacenecyBuffer;	//隣接情報を受け取る変数
 DWORD g_dwNumMaterials;					//マテリアル数
-LPD3DXBUFFER g_pD3DXMtrlBuffer;			//マテリアル情報
+
 
 D3DCOLORVALUE* g_pMeshColor	= NULL;
 LPDIRECT3DTEXTURE9* g_pMeshTexture = NULL;
 D3DMATERIAL9* g_pD3DXMaterials = NULL;
+
 
 //===============================================
 //	関数			function
@@ -43,15 +44,17 @@ D3DMATERIAL9* g_pD3DXMaterials = NULL;
 //-------------------------------------
 //	読み込み
 //-------------------------------------
-void XModel_Load(const char pFileName[MODEL_FILENAME_MAX])
+void XModel_Load(const char* pFileName)
 {
 	HRESULT hr;
+	LPD3DXBUFFER pD3DXMtrlBuffer = NULL;			//マテリアル情報
+
 	hr = D3DXLoadMeshFromX(
 		pFileName,				//読み込むファイル名
-		D3DXMESH_MANAGED | D3DXMESH_WRITEONLY,	//容量上げ　D3DXMESH_32BIT
+		D3DXMESH_MANAGED,	//容量上げ　D3DXMESH_32BIT
 		System_GetDevice(),
 		NULL,
-		&g_pD3DXMtrlBuffer,
+		&pD3DXMtrlBuffer,
 		NULL,
 		&g_dwNumMaterials,
 		&g_pD3DXMesh
@@ -75,9 +78,9 @@ void XModel_Load(const char pFileName[MODEL_FILENAME_MAX])
 	g_pD3DXMaterials = new D3DMATERIAL9[g_dwNumMaterials];
 	g_pMeshTexture = new LPDIRECT3DTEXTURE9[g_dwNumMaterials];
 
-	D3DXMATERIAL* pD3DXMaterials = (D3DXMATERIAL*)g_pD3DXMtrlBuffer->GetBufferPointer();
+	D3DXMATERIAL* pD3DXMaterials = (D3DXMATERIAL*)pD3DXMtrlBuffer->GetBufferPointer();
 
-	for(int i = 0; i <g_dwNumMaterials; i++)
+	for(UINT i = 0; i <g_dwNumMaterials; i++)
 	{
 		//マテリアル
 		g_pD3DXMaterials[i] = pD3DXMaterials[i].MatD3D;
@@ -94,9 +97,16 @@ void XModel_Load(const char pFileName[MODEL_FILENAME_MAX])
 			//テクスチャ無し
 			if(FAILED(hr))
 			{
+				MessageBox(*System_GethWnd(),"テクスチャの読み込みに失敗しました。","読み込み失敗",MB_OK);
+				DestroyWindow(*System_GethWnd());
 				g_pMeshTexture[i] = NULL;
 			}
 		}
+	}
+
+	if(pD3DXMtrlBuffer != NULL)
+	{
+		pD3DXMtrlBuffer->Release();
 	}
 
 	return;
@@ -107,7 +117,12 @@ void XModel_Load(const char pFileName[MODEL_FILENAME_MAX])
 //-------------------------------------	
 void XModel_Render()
 {
-
+	for(int i= 0; i< g_dwNumMaterials; i++)
+	{
+		System_GetDevice()->SetMaterial(&g_pD3DXMaterials[i]);	//マテリアル登録
+		System_GetDevice()->SetTexture(0,g_pMeshTexture[i]);	//テクスチャ登録
+		g_pD3DXMesh->DrawSubset(i);								//描画
+	}
 }
 
 //-------------------------------------

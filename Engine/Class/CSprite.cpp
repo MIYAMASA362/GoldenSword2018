@@ -21,14 +21,14 @@ Sprite::Sprite()
 //-------------------------------------
 //	コンストラクタ　ポインタ型
 //-------------------------------------
-Sprite::Sprite(Transform2* pTransform2, Texture* pTexture) :Render2D(&this->transform,&this->texture)
+Sprite::Sprite(Transform2* pTransform2, Texture* pTexture) :render(&this->transform,&this->texture)
 {
 	this->transform = *pTransform2;
 	this->texture = *pTexture;
-	this->pAnimation = NULL;
+	this->animation = {};
 }
 
-Sprite::Sprite(Transform2* pTransform2, Texture* pTexture, Animation* pAnimation):Render2D(&this->transform,&this->texture,&this->animation)
+Sprite::Sprite(Transform2* pTransform2, Texture* pTexture, Animation* pAnimation):render(&this->transform,&this->texture,&this->animation)
 {
 	this->transform		= *pTransform2;
 	this->texture		= *pTexture;

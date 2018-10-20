@@ -256,7 +256,6 @@ void System_Initialize()
 	g_pD3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
 
 
-
 	//------------------------------------
 	//	“ü—Íˆ—@	‰Šú‰»
 	//------------------------------------

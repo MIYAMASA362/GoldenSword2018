@@ -13,23 +13,21 @@
 //-------------------------------------
 //	Texture()
 //-------------------------------------
-
-Texture::Texture()
-{
-	Texture_index = 0;
-	TexCoord = { 0,0 };
-	TexScale = { 0,0 };
-	Tex_Width = 0;
-	Tex_Height = 0;
-}
-
 Texture::Texture(int Texture_index, TEXCOORD TexCoord, TEXSCALE TexScale)
 {
 	this->Texture_index = Texture_index;
 	this->TexCoord = TexCoord;
 	this->TexScale = TexScale;
-	Tex_Width = Texture_GetWidth(Texture_index);
-	Tex_Height = Texture_GetHeight(Texture_index);
+	if(Texture_index == TEXTURE_NONE)
+	{
+		Tex_Width = 0;
+		Tex_Height = 0;
+	}
+	else
+	{
+		Tex_Width = Texture_GetWidth(Texture_index);
+		Tex_Height = Texture_GetHeight(Texture_index);
+	}
 }
 
 //-------------------------------------

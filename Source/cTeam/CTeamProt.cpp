@@ -10,16 +10,19 @@
 
 //Gometry
 #include"Cube.h"
+#include"Grid.h"
 
 //Class
 #include"CArmorObject.h"
 #include"CCoreObject.h"
 #include"CBodyObject.h"
+#include"CCamera.h"
 
 #include "Debug_Sphere.h"
 //===============================================
 //	グローバル変数
 //===============================================
+static Camera g_Camera;							//カメラ
 
 //胴体
 static BodyObject Body_01(
@@ -462,6 +465,9 @@ void CTeamProt_Initialize()
 	Screw_06.Set(&Armar_61);			//ネジの胴体は決まっているので、アーマーだけ設定
 	Screw_06.Set(&Armar_62);			//アーマー設定
 	DebugBufferManager::Init();
+
+	Grid_Initialize();
+	g_Camera.Set_Main();
 }
 
 //-------------------------------------
@@ -469,8 +475,8 @@ void CTeamProt_Initialize()
 //-------------------------------------
 void CTeamProt_Update()
 {
-	ArmarObject::g_Update();	//アーマー更新
-	CoreObject::g_Update();		//ネジ更新
+	GameObject::g_Update();
+	g_Camera.Update();
 }
 
 //-------------------------------------
@@ -478,16 +484,12 @@ void CTeamProt_Update()
 //-------------------------------------
 void CTeamProt_Render()
 {
-	//胴体
-	Body_01.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-	Body_02.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-	Body_03.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-	Body_04.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-	Body_05.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
-	Body_06.render.Begin(FVF_CUBE_VERTEX3D, CUBE_PRIMITIVE_TYPE, GetModel_Cube(), sizeof(CubeVertex3D), CUBE_PRIMITIVE_NUM);
+	//GameObject::g_Render();
+
+	Grid_Render();
+
+	Camera::Begin();
 	
-	ArmarObject::g_Rednder();
-	CoreObject::g_Render();
 }
 
 //-------------------------------------

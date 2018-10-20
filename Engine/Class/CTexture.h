@@ -31,7 +31,7 @@ public:
 	TEXSCALE GetTexScale();		//サイズ取得
 
 	//コンストラクタ
-	Texture();
+	Texture():Texture(TEXTURE_NONE, { 0,0 }, { 0,0 }){};
 	Texture(int Texture_index, TEXCOORD TexCoord, TEXSCALE TexScale);
 };
 

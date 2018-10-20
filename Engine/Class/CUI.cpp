@@ -15,7 +15,6 @@
 //-------------------------------------
 UI::UI(Transform2* pTransform2, Texture* pTexture):Sprite(pTransform2, pTexture)
 {
-	
 }
 
 UI::UI(Transform2* pTransform2, Texture* pTexture, Animation* pAnimation): Sprite(pTransform2, pTexture, pAnimation)
@@ -28,7 +27,7 @@ UI::UI(Transform2* pTransform2, Texture* pTexture, Animation* pAnimation): Sprit
 //-------------------------------------
 void UI::Set(Transform2* pTransform2)
 {
-	this->pTransform = pTransform2;
+	this->render.pTransform = pTransform2;
 }
 
 //-------------------------------------
@@ -49,9 +48,9 @@ bool UI::Click()
 bool UI::Hover()
 {
 
-	if (pTransform->Position.x - pTransform->Scale.x * 0.5f <= Mouse_IsMouseX() && Mouse_IsMouseX() <= pTransform->Position.x + pTransform->Scale.x * 0.5f)
+	if (this->transform.Position.x - this->transform.Scale.x * 0.5f <= Mouse_IsMouseX() && Mouse_IsMouseX() <= this->transform.Position.x + this->transform.Scale.x * 0.5f)
 	{
-		if (pTransform->Position.y - pTransform->Scale.y * 0.5f <= Mouse_IsMouseY() && Mouse_IsMouseY() <= pTransform->Position.y + pTransform->Scale.x * 0.5f)
+		if (this->transform.Position.y - this->transform.Scale.y * 0.5f <= Mouse_IsMouseY() && Mouse_IsMouseY() <= this->transform.Position.y + this->transform.Scale.x * 0.5f)
 		{
 			return true;
 		}

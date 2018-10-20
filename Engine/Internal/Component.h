@@ -16,7 +16,7 @@
 using namespace std;
 
 //===============================================
-//	Component クラス
+//	Component 部品クラス
 //===============================================
 class Component 
 {
@@ -24,6 +24,9 @@ private:
 	
 public:
 	static vector<Component*> g_Index;	//インデックス
+
+	Component();
+
 protected:
 
 };
