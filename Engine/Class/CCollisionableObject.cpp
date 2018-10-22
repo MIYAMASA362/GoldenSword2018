@@ -86,6 +86,7 @@ ShapeCuboid::~ShapeCuboid()
 //	Collision ƒNƒ‰ƒX
 //===============================================
 
+
 bool Collision::SphereVsSphere( ShapeSphere& Sphere0, ShapeSphere& Sphere1 )
 {
 	D3DXVECTOR3 vecLength = Sphere1.Pos - Sphere0.Pos;

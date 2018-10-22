@@ -56,7 +56,7 @@ void Main_Initialize(void)
 
 	srand((UINT)time(NULL));
 
-	XModel_Load("Models/Ps4_Controller2.x");
+	//XModel_Load("Models/Ps4_Controller2.x");
 }
 
 //=============================================================
@@ -75,7 +75,7 @@ void Main_UpdateBegin(void)
 //=============================================================
 void Main_Render(void)
 {
-	XModel_Render();
+	//XModel_Render();
 
 	CTeamProt_Render();
 	uiSprite.render.Begin(R2D_SPRITE_ROTATE);

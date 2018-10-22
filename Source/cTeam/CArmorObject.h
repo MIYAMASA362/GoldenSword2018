@@ -22,7 +22,6 @@ class ArmarObject :public GameObject
 {
 private:
 	D3DXVECTOR3 Speed;
-	
 	int Count;
 public:
 

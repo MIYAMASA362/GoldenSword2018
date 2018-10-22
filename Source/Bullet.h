@@ -24,6 +24,7 @@
 enum BULLET_TYPE
 {
 	BULLET_NORMAL,
+	BULLET_TORNADO,
 };
 
 //===============================================
@@ -37,6 +38,7 @@ class Bullet:public GameObject
 {
 private:
 	bool IsEnable;							//有効・無効
+	D3DXVECTOR3 MainPosition;				//
 	BULLET_TYPE type;						//タイプ
 	D3DXVECTOR3 face;						//弾の向き
 public:

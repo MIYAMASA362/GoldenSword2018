@@ -484,7 +484,7 @@ void CTeamProt_Update()
 //-------------------------------------
 void CTeamProt_Render()
 {
-	//GameObject::g_Render();
+	GameObject::g_Render();
 
 	Grid_Render();
 

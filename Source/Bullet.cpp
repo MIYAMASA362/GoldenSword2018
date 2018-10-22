@@ -7,6 +7,7 @@
 //
 //-----------------------------------------------
 #include <d3dx9.h>
+#include<math.h>
 #include "Bullet.h"
 #include "common.h"
 #include "System.h"
@@ -149,6 +150,7 @@ void Bullet::TypeSet(BULLET_TYPE tyep)
 	this->type = type;
 }
 
+static float value = 0;
 //-------------------------------------
 //	XVˆ—
 //-------------------------------------
@@ -161,9 +163,21 @@ void Bullet::Update()
 	case BULLET_NORMAL:
 		this->transform.Position += this->face * BULLET_NORMAL_SPEED;
 		break;
+
+	//‰ñ“]‚³‚¹‚é’e
+	case BULLET_TORNADO:
+		this->MainPosition += this->face * BULLET_NORMAL_SPEED;
+		this->transform.Position = MainPosition;
+
+		this->transform.Position.x += 1.0f * sinf(D3DXToRadian(value));
+		this->transform.Position.y += 1.0f * cosf(D3DXToRadian(value));
+
+		break;
 	default:
 		break;
 	}
+
+	value += 1.0f;
 }
 
 //-------------------------------------
@@ -180,7 +194,7 @@ bool Bullet::GetEnable()
 void Bullet::SetBullet(D3DXVECTOR3 position, D3DXVECTOR3 face, BULLET_TYPE type)
 {
 	D3DXVec3Normalize(&face,&face);		//’PˆÊ‰»
-
+	this->MainPosition = position;
 	this->transform.Position = position;
 	this->face = face;
 	this->type = type;
