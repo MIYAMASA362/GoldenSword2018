@@ -11,42 +11,81 @@
 #include"Cube.h"
 
 //===============================================
+//	定数
+//===============================================
+ // とりあえず
+const D3DXVECTOR3 GRAVITY( 0.0f, -0.02f, 0.0f );	//重力
+//===============================================
 //	関数
 //===============================================
 
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-ArmarObject::ArmarObject(Transform* pTransform,Texture* pTexture):GameObject(pTransform,pTexture)
+ArmorObject::ArmorObject(Transform* pTransform, Texture* pTexture, ARMOR_DISCHARGING_TYPE Type) :GameObject(pTransform,pTexture)
 {
 	bBreak = false;
+	this->Discharging_Type = Type;
 	this->Speed = D3DXVECTOR3(0.0f,0.0f,0.0f);
-	this->Count = 0;
+	this->DelayFrameForDrop = -1;
 }
 
 //-------------------------------------
 //	更新処理
 //-------------------------------------
-void ArmarObject::Update()
+void ArmorObject::Update()
 {
 	//--------------------------
 	//	バラバラ
 	//--------------------------
-	if(bBreak)
+	if(bBreak && DelayFrameForDrop <= 0 )
 	{
-		
-		if (this->Count < 5)
-		{
-			this->Speed.x = ((rand() % 20) - 10) * 0.1f;
-			this->Speed.z = ((rand() % 20) - 10) * 0.1f;
-			this->Speed.y = 0.1f;
-			this->transform.Rotation.x += 10.0f;
-
-			this->Count++;
-
-		}
-		this->transform.Rotation.x += 10;
-
 		this->transform.Position += this->Speed;
+		this->Speed += GRAVITY;
 	}
+	// 
+	if( bBreak && 0 < DelayFrameForDrop )
+	{
+		DelayFrameForDrop--;
+	}
+
 }
+
+
+//-------------------------------------
+//	速度ベクトルセット
+//-------------------------------------
+void ArmorObject::SetSpeed( D3DXVECTOR3 InitVec )
+{
+	Speed = InitVec;
+}
+
+
+//-------------------------------------
+//	速度ベクトルセット
+//-------------------------------------
+void ArmorObject::Break()
+{
+	bBreak = true;
+}
+
+//-------------------------------------
+//	速度ベクトルセット
+//-------------------------------------
+void ArmorObject::Break( D3DXVECTOR3 InitVec, unsigned int InitDelay )
+{
+	Break();
+	SetSpeed( InitVec );
+	DelayFrameForDrop = InitDelay;
+
+}
+
+//-------------------------------------
+//	タイプをセット
+//-------------------------------------
+void ArmorObject::Set_DischargingType(ARMOR_DISCHARGING_TYPE Type)
+{
+	this->Discharging_Type = Type;
+}
+
+

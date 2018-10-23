@@ -8,6 +8,7 @@
 
 #include<d3dx9.h>
 #include<vector>
+#include"common.h"
 
 using namespace std;
 
@@ -16,21 +17,48 @@ using namespace std;
 #include"CCollisionableObject.h"
 
 //===============================================
+//	アーマー飛ばすやつ
+//===============================================
+enum ARMOR_DISCHARGING_TYPE
+{
+	FALL = 0,
+	RADIALLY,
+	// enum max
+	ARMOR_DIS_TYPE_MAX
+};
+
+//===============================================
 //	ArmarObject クラス
 //===============================================
-class ArmarObject :public GameObject
+class ArmorObject :public GameObject
 {
-private:
+private: // 一般
 	D3DXVECTOR3 Speed;
-	int Count;
-public:
-
 	bool bBreak;		//バラバラフラグ　True(バラバラになる)
 	
-	ArmarObject(Transform* pTransform) :ArmarObject(pTransform, &Texture(TEXTURE_NONE, { 0,0 }, { 0,0 })) {};
-	ArmarObject(Transform* pTransform, Texture* pTexture);
-	
+public:
+	ARMOR_DISCHARGING_TYPE Discharging_Type;	//飛ぶタイプ
+
+public: // バラバラ
+	void Break();
+	void Break( D3DXVECTOR3 Speed, unsigned int DelayFrameForDrop );
+
+public: // 一般関数
+	void SetSpeed( D3DXVECTOR3 Vector );
+	void Set_DischargingType(ARMOR_DISCHARGING_TYPE Type);
+
+public: // コンストラクタ | デストラクタ
+	ArmorObject(Transform* pTransform) :ArmorObject(pTransform, &Texture(TEXTURE_NONE, { 0,0 }, { 0,0 })) {};
+	ArmorObject(Transform* pTransform, Texture* pTexture) :ArmorObject(pTransform, pTexture, FALL) {};
+	ArmorObject(Transform* pTransform, Texture* pTexture,ARMOR_DISCHARGING_TYPE Type);
+
+public:
 	void Update();		//更新処理
+
+
+
+public: // バラバラ イベント用
+	int DelayFrameForDrop;
 	
 };
 

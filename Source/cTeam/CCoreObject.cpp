@@ -20,22 +20,23 @@
 //-------------------------------------
 //	コンストラクタ
 //-------------------------------------
-CoreObject::CoreObject(Transform* pTransform,Texture* pTexture):GameObject(pTransform, pTexture), ColShape(pTransform->Position, 1.0f)
+CoreObject::CoreObject(Transform* pTransform, Texture* pTexture, CORE_DISCHARGE_JUDGE_TYPE Type):GameObject(pTransform, pTexture), ColShape(pTransform->Position, 1.0f)
 {
-
+	this->Type = Type;
 }
 
-void CoreObject::Set(ArmarObject* pArmarObject)
+void CoreObject::Set(ArmorObject* pArmorObject)
 {
-	this->pArmar_Index.push_back(pArmarObject);
+	this->pArmor_Index.push_back(pArmorObject);
 }
 
-void CoreObject::Set(ArmarObject* pArmarObject,BodyObject* pBodyObject)
+void CoreObject::Set(ArmorObject* pArmorObject,BodyObject* pBodyObject)
 {
-	this->pArmar_Index.push_back(pArmarObject);
+	this->pArmor_Index.push_back(pArmorObject);
 	this->pBodyObject = pBodyObject;
 	this->Set_Parent(this->pBodyObject);
 }
+
 
 //-------------------------------------
 //	デストラクタ
@@ -51,13 +52,9 @@ CoreObject::~CoreObject()
 //-------------------------------------
 void CoreObject::Hit()
 {
-	if(this->pArmar_Index.size() > 0)
+	if(this->pArmor_Index.size() > 0)
 	{
-		for(int i = 0; i < pArmar_Index.size(); i++)
-		{
-			this->pArmar_Index.at(i)->bBreak = true;
-			this->pArmar_Index.erase(this->pArmar_Index.begin() + i);
-		}
+		DischargeArmor( 5.0f, 50.0f);
 	}
 }
 
@@ -84,7 +81,7 @@ void CoreObject::Update()
 //-------------------------------------
 void CoreObject::Render()
 {
-	if (this->pArmar_Index.size() > 0)
+	if (this->pArmor_Index.size() > 0)
 	{
 		DebugBufferManager::Sphere_BatchBegin();
 
@@ -96,5 +93,63 @@ void CoreObject::Render()
 	}
 }
 
+//-------------------------------------
+//	判定設定
+//-------------------------------------
+void CoreObject::Set_JudgeType(CORE_DISCHARGE_JUDGE_TYPE Type)
+{
+	this->Type = Type;
+}
 
+//-------------------------------------
+//	描画
+//-------------------------------------
+void CoreObject::DischargeArmor( float MaxDist, float Weight, float SpeedRatio )
+{
+	for( int i = 0; i < pArmor_Index.size(); i++ )
+	{
+		
+		// そのアーマーとの距離を計算
+		const float SquaredDist = D3DXVec3LengthSq( &( pArmor_Index.at( i )->transform.Position - transform.Position ) );
+		// アーマー破棄イベントまでの遅延フレームを算出
+		// 得たフレーム数が最大値より低ければアーマー破棄を実行
 
+		float DelayFrame;
+
+		if( SquaredDist < MaxDist * MaxDist )
+		{
+			switch (this->Type)
+			{
+			case CORE_JUDGE_TYPE_0:	//距離
+				DelayFrame = SquaredDist * Weight;
+				break;
+			case CORE_JUDGE_TYPE_1:	//範囲
+				DelayFrame = MaxDist * Weight;
+				break;
+			default:
+				//NULL
+				break;
+			}
+
+			const D3DXVECTOR3* pInitSpeed;
+			const ARMOR_DISCHARGING_TYPE Type = pArmor_Index.at(i)->Discharging_Type;
+
+			switch( Type )
+			{
+
+				case FALL:	//ずれて落ちる
+					pInitSpeed = new D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
+					break;
+				case RADIALLY: //放射状に広がる
+					D3DXVECTOR3 Vec = pArmor_Index.at( i )->transform.Position - transform.Position;
+					D3DXVec3Normalize( &Vec, &Vec );
+					Vec *= SpeedRatio;
+					pInitSpeed = new D3DXVECTOR3( Vec );
+					
+			}
+
+			pArmor_Index.at( i )->Break( *pInitSpeed, DelayFrame );
+			this->pArmor_Index.erase( this->pArmor_Index.begin() + i );
+		}
+	}
+}
