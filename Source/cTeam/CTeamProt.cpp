@@ -42,7 +42,7 @@ static BodyObject Body_01(
 );
 
 //アーマー
-static ArmarObject Armar_10(
+static ArmorObject Armor_10(
 	&Transform
 	(
 		D3DXVECTOR3(0.0f, 1.0f, 0.0f),	//位置
@@ -54,7 +54,7 @@ static ArmarObject Armar_10(
 );
 
 //アーマー
-static ArmarObject Armar_11(
+static ArmorObject Armor_11(
 	&Transform
 	(
 		D3DXVECTOR3(-1.0f, 1.0f, 0.0f),
@@ -65,7 +65,7 @@ static ArmarObject Armar_11(
 );
 
 //アーマー
-static ArmarObject Armar_12(
+static ArmorObject Armor_12(
 	&Transform
 	(
 		D3DXVECTOR3(1.0f, 1.0f, 0.0f),
@@ -110,7 +110,7 @@ static BodyObject Body_02(
 );
 
 //アーマー
-static ArmarObject Armar_20(
+static ArmorObject Armor_20(
 	&Transform
 	(
 		D3DXVECTOR3(3.0f, 1.0f, 0.0f),	//位置
@@ -122,7 +122,7 @@ static ArmarObject Armar_20(
 );
 
 //アーマー
-static ArmarObject Armar_21(
+static ArmorObject Armor_21(
 	&Transform
 	(
 		D3DXVECTOR3(2.0f, 1.0f, 0.0f),
@@ -133,7 +133,7 @@ static ArmarObject Armar_21(
 );
 
 //アーマー
-static ArmarObject Armar_22(
+static ArmorObject Armor_22(
 	&Transform
 	(
 		D3DXVECTOR3(4.0f, 1.0f, 0.0f),
@@ -178,7 +178,7 @@ static BodyObject Body_03(
 );
 
 //アーマー
-static ArmarObject Armar_30(
+static ArmorObject Armor_30(
 	&Transform
 	(
 		D3DXVECTOR3(-3.0f, 1.0f, 0.0f),	//位置
@@ -190,7 +190,7 @@ static ArmarObject Armar_30(
 );
 
 //アーマー
-static ArmarObject Armar_31(
+static ArmorObject Armor_31(
 	&Transform
 	(
 		D3DXVECTOR3(-4.0f, 1.0f, 0.0f),
@@ -201,7 +201,7 @@ static ArmarObject Armar_31(
 );
 
 //アーマー
-static ArmarObject Armar_32(
+static ArmorObject Armor_32(
 	&Transform
 	(
 		D3DXVECTOR3(-2.0f, 1.0f, 0.0f),
@@ -246,7 +246,7 @@ static BodyObject Body_04(
 );
 
 //アーマー
-static ArmarObject Armar_40(
+static ArmorObject Armor_40(
 	&Transform
 	(
 		D3DXVECTOR3(0.0f, 4.0f, 0.0f),	//位置
@@ -258,7 +258,7 @@ static ArmarObject Armar_40(
 );
 
 //アーマー
-static ArmarObject Armar_41(
+static ArmorObject Armor_41(
 	&Transform
 	(
 		D3DXVECTOR3(-1.0f, 4.0f, 0.0f),
@@ -269,7 +269,7 @@ static ArmarObject Armar_41(
 );
 
 //アーマー
-static ArmarObject Armar_42(
+static ArmorObject Armor_42(
 	&Transform
 	(
 		D3DXVECTOR3(1.0f, 4.0f, 0.0f),
@@ -314,7 +314,7 @@ static BodyObject Body_05(
 );
 
 //アーマー
-static ArmarObject Armar_50(
+static ArmorObject Armor_50(
 	&Transform
 	(
 		D3DXVECTOR3(3.0f, 4.0f, 0.0f),	//位置
@@ -326,7 +326,7 @@ static ArmarObject Armar_50(
 );
 
 //アーマー
-static ArmarObject Armar_51(
+static ArmorObject Armor_51(
 	&Transform
 	(
 		D3DXVECTOR3(2.0f, 4.0f, 0.0f),
@@ -337,7 +337,7 @@ static ArmarObject Armar_51(
 );
 
 //アーマー
-static ArmarObject Armar_52(
+static ArmorObject Armor_52(
 	&Transform
 	(
 		D3DXVECTOR3(4.0f, 4.0f, 0.0f),
@@ -382,7 +382,7 @@ static BodyObject Body_06(
 );
 
 //アーマー
-static ArmarObject Armar_60(
+static ArmorObject Armor_60(
 	&Transform
 	(
 		D3DXVECTOR3(-3.0f, 4.0f, 0.0f),	//位置
@@ -394,7 +394,7 @@ static ArmarObject Armar_60(
 );
 
 //アーマー
-static ArmarObject Armar_61(
+static ArmorObject Armor_61(
 	&Transform
 	(
 		D3DXVECTOR3(-4.0f, 4.0f, 0.0f),
@@ -405,7 +405,7 @@ static ArmarObject Armar_61(
 );
 
 //アーマー
-static ArmarObject Armar_62(
+static ArmorObject Armor_62(
 	&Transform
 	(
 		D3DXVECTOR3(-2.0f, 4.0f, 0.0f),
@@ -441,29 +441,34 @@ static CoreObject Screw_06
 //-------------------------------------
 void CTeamProt_Initialize()
 {
-	Screw_01.Set(&Armar_10, &Body_01);	//ネジに胴体とアーマーを設定
-	Screw_01.Set(&Armar_11);			//ネジの胴体は決まっているので、アーマーだけ設定
-	Screw_01.Set(&Armar_12);			//アーマー設定
+	Screw_01.Set(&Armor_10, &Body_01);	//ネジに胴体とアーマーを設定
+	Screw_01.Set(&Armor_11);			//ネジの胴体は決まっているので、アーマーだけ設定
+	Screw_01.Set(&Armor_12);			//アーマー設定
 
-	Screw_02.Set(&Armar_20, &Body_02);	//ネジに胴体とアーマーを設定
-	Screw_02.Set(&Armar_21);			//ネジの胴体は決まっているので、アーマーだけ設定
-	Screw_02.Set(&Armar_22);			//アーマー設定
+	Screw_01.Set_JudgeType(CoreObject::CORE_JUDGE_TYPE_1);
+	Armor_10.Set_DischargingType(FALL);
+	Armor_11.Set_DischargingType(RADIALLY);
+	Armor_12.Set_DischargingType(RADIALLY);
 
-	Screw_03.Set(&Armar_30, &Body_03);	//ネジに胴体とアーマーを設定
-	Screw_03.Set(&Armar_31);			//ネジの胴体は決まっているので、アーマーだけ設定
-	Screw_03.Set(&Armar_32);			//アーマー設定
+	Screw_02.Set(&Armor_20, &Body_02);	//ネジに胴体とアーマーを設定
+	Screw_02.Set(&Armor_21);			//ネジの胴体は決まっているので、アーマーだけ設定
+	Screw_02.Set(&Armor_22);			//アーマー設定
 
-	Screw_04.Set(&Armar_40, &Body_04);	//ネジに胴体とアーマーを設定
-	Screw_04.Set(&Armar_41);			//ネジの胴体は決まっているので、アーマーだけ設定
-	Screw_04.Set(&Armar_42);			//アーマー設定
+	Screw_03.Set(&Armor_30, &Body_03);	//ネジに胴体とアーマーを設定
+	Screw_03.Set(&Armor_31);			//ネジの胴体は決まっているので、アーマーだけ設定
+	Screw_03.Set(&Armor_32);			//アーマー設定
 
-	Screw_05.Set(&Armar_50, &Body_05);	//ネジに胴体とアーマーを設定
-	Screw_05.Set(&Armar_51);			//ネジの胴体は決まっているので、アーマーだけ設定
-	Screw_05.Set(&Armar_52);			//アーマー設定
+	Screw_04.Set(&Armor_40, &Body_04);	//ネジに胴体とアーマーを設定
+	Screw_04.Set(&Armor_41);			//ネジの胴体は決まっているので、アーマーだけ設定
+	Screw_04.Set(&Armor_42);			//アーマー設定
 
-	Screw_06.Set(&Armar_60, &Body_06);	//ネジに胴体とアーマーを設定
-	Screw_06.Set(&Armar_61);			//ネジの胴体は決まっているので、アーマーだけ設定
-	Screw_06.Set(&Armar_62);			//アーマー設定
+	Screw_05.Set(&Armor_50, &Body_05);	//ネジに胴体とアーマーを設定
+	Screw_05.Set(&Armor_51);			//ネジの胴体は決まっているので、アーマーだけ設定
+	Screw_05.Set(&Armor_52);			//アーマー設定
+
+	Screw_06.Set(&Armor_60, &Body_06);	//ネジに胴体とアーマーを設定
+	Screw_06.Set(&Armor_61);			//ネジの胴体は決まっているので、アーマーだけ設定
+	Screw_06.Set(&Armor_62);			//アーマー設定
 	DebugBufferManager::Init();
 
 	Grid_Initialize();
