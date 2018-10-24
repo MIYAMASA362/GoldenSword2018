@@ -2,8 +2,8 @@
 //	XModel.cpp
 //		Author:HIROMASA IKEDA	DATE:2018/10/19
 //===============================================
-//	変更者 Changed By
-//		Name:	DATE:
+//	変更者 Changed By 
+//		Name:Minoda Takamasa DATE:2018/10/23
 //
 //-----------------------------------------------
 
@@ -14,28 +14,21 @@
 #include<d3dx9.h>
 #include"XModel.h"
 #include"System.h"
+#include "Lighting.h"
 
 //Class
-
 
 //===============================================
 //	マクロ定義		define
 //===============================================
-
+#define MESH_AMOUNT (1)
+#define MESH_MAX (1)
 
 //===============================================
 //	グローバル変数	global
 //===============================================
-LPD3DXMESH g_pD3DXMesh;					//メッシュ情報
 
-LPD3DXBUFFER g_pD3DXAdjacenecyBuffer;	//隣接情報を受け取る変数
-DWORD g_dwNumMaterials;					//マテリアル数
-
-
-D3DCOLORVALUE* g_pMeshColor	= NULL;
-LPDIRECT3DTEXTURE9* g_pMeshTexture = NULL;
-D3DMATERIAL9* g_pD3DXMaterials = NULL;
-
+MeshData g_Mesh[MESH_AMOUNT];
 
 //===============================================
 //	関数			function
@@ -44,20 +37,25 @@ D3DMATERIAL9* g_pD3DXMaterials = NULL;
 //-------------------------------------
 //	読み込み
 //-------------------------------------
-void XModel_Load(const char* pFileName)
+void XModel_Load(MeshData *pMesh, LPSTR szXFileName, D3DXVECTOR3* pvecPosition)
 {
 	HRESULT hr;
-	LPD3DXBUFFER pD3DXMtrlBuffer = NULL;			//マテリアル情報
+
+	// メッシュの初期位置
+	memcpy(&pMesh->vecPosition, pvecPosition, sizeof(D3DXVECTOR3));
+
+	// Xファイルからメッシュをロードする	
+	LPD3DXBUFFER pD3DXMtrlBuffer = NULL;
 
 	hr = D3DXLoadMeshFromX(
-		pFileName,				//読み込むファイル名
-		D3DXMESH_MANAGED,	//容量上げ　D3DXMESH_32BIT
+		szXFileName,				//読み込むファイル名
+		D3DXMESH_SYSTEMMEM,	//容量上げ　D3DXMESH_32BIT
 		System_GetDevice(),
 		NULL,
 		&pD3DXMtrlBuffer,
 		NULL,
-		&g_dwNumMaterials,
-		&g_pD3DXMesh
+		&pMesh->dwNumMaterials,
+		&pMesh->pMesh
 	);
 
 	if(FAILED(hr))
@@ -74,40 +72,29 @@ void XModel_Load(const char* pFileName)
 	);
 	*/
 
-	//マテリアル内での必要確保
-	g_pD3DXMaterials = new D3DMATERIAL9[g_dwNumMaterials];
-	g_pMeshTexture = new LPDIRECT3DTEXTURE9[g_dwNumMaterials];
+	D3DXMATERIAL* d3dxMaterials = (D3DXMATERIAL*)pD3DXMtrlBuffer->GetBufferPointer();
+	pMesh->pMeshMaterials = new D3DMATERIAL9[pMesh->dwNumMaterials];
+	pMesh->pMeshTextures = new LPDIRECT3DTEXTURE9[pMesh->dwNumMaterials];
 
 	D3DXMATERIAL* pD3DXMaterials = (D3DXMATERIAL*)pD3DXMtrlBuffer->GetBufferPointer();
 
-	for(UINT i = 0; i <g_dwNumMaterials; i++)
+	for (DWORD i = 0; i < pMesh->dwNumMaterials; i++)
 	{
-		//マテリアル
-		g_pD3DXMaterials[i] = pD3DXMaterials[i].MatD3D;
-
-		if(pD3DXMaterials[i].pTextureFilename == NULL)
+		pMesh->pMeshMaterials[i] = d3dxMaterials[i].MatD3D;
+		pMesh->pMeshMaterials[i].Ambient = pMesh->pMeshMaterials[i].Diffuse;
+		pMesh->pMeshTextures[i] = NULL;
+		if (d3dxMaterials[i].pTextureFilename != NULL &&
+			lstrlen(d3dxMaterials[i].pTextureFilename) > 0)
 		{
-			g_pMeshTexture[i] = NULL; //テクスチャ無し
-		}
-		else
-		{
-			//テクスチャ生成
-			hr = D3DXCreateTextureFromFile(System_GetDevice(),pD3DXMaterials[i].pTextureFilename,&g_pMeshTexture[i]);
-
-			//テクスチャ無し
-			if(FAILED(hr))
+			if (FAILED(D3DXCreateTextureFromFile(System_GetDevice(),
+				d3dxMaterials[i].pTextureFilename,
+				&pMesh->pMeshTextures[i])))
 			{
-				MessageBox(*System_GethWnd(),"テクスチャの読み込みに失敗しました。","読み込み失敗",MB_OK);
-				DestroyWindow(*System_GethWnd());
-				g_pMeshTexture[i] = NULL;
+				MessageBox(NULL, "テクスチャの読み込みに失敗しました", NULL, MB_OK);
 			}
 		}
 	}
-
-	if(pD3DXMtrlBuffer != NULL)
-	{
-		pD3DXMtrlBuffer->Release();
-	}
+	pD3DXMtrlBuffer->Release();
 
 	return;
 }
@@ -115,13 +102,38 @@ void XModel_Load(const char* pFileName)
 //-------------------------------------
 //	描画
 //-------------------------------------	
-void XModel_Render()
+void XModel_Render(MeshData *pMesh)
 {
-	for(int i= 0; i< g_dwNumMaterials; i++)
+	MeshData *pMeshData = pMesh;
+	System_GetDevice()->SetTransform(D3DTS_WORLD, &pMeshData->matWorld);
+
+	//マテリアルの数だけループさせる
+	for (DWORD i = 0; i < pMesh->dwNumMaterials; i++)
 	{
-		System_GetDevice()->SetMaterial(&g_pD3DXMaterials[i]);	//マテリアル登録
-		System_GetDevice()->SetTexture(0,g_pMeshTexture[i]);	//テクスチャ登録
-		g_pD3DXMesh->DrawSubset(i);								//描画
+		//マテリアル設定
+		System_GetDevice()->SetMaterial(&pMesh->pMeshMaterials[i]);
+		//テクスチャ設定
+		System_GetDevice()->SetTexture(0, pMesh->pMeshTextures[i]);
+		//レンダリング
+		pMesh->pMesh->DrawSubset(i);
+	}
+}
+
+void XModel_Render(MeshData *pMesh, D3DXMATRIXA16 mtx)
+{
+	MeshData *pMeshData = pMesh;
+	D3DXMATRIXA16 mtxWorld = pMeshData->matWorld * mtx;
+	System_GetDevice()->SetTransform(D3DTS_WORLD, &mtx);
+
+	//マテリアルの数だけループさせる
+	for (DWORD i = 0; i < pMesh->dwNumMaterials; i++)
+	{
+		//マテリアル設定
+		System_GetDevice()->SetMaterial(&pMesh->pMeshMaterials[i]);
+		//テクスチャ設定
+		System_GetDevice()->SetTexture(0, pMesh->pMeshTextures[i]);
+		//レンダリング
+		pMesh->pMesh->DrawSubset(i);
 	}
 }
 
@@ -138,6 +150,15 @@ void XModel_Initialize()
 //-------------------------------------
 void XModel_Finalize() 
 {
-
+	for (DWORD i = 0; i < MESH_MAX; i++)
+	{
+		delete g_Mesh[i].pMeshTextures;
+		delete g_Mesh[i].pMeshMaterials;
+		g_Mesh[i].pMesh->Release();
+	}
 }
 
+MeshData* GetMeshData(int MeshIndex)
+{
+	return &g_Mesh[MeshIndex];
+}

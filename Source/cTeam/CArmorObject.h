@@ -38,6 +38,7 @@ private: // 一般
 	
 public:
 	ARMOR_DISCHARGING_TYPE Discharging_Type;	//飛ぶタイプ
+	
 
 public: // バラバラ
 	void Break();
@@ -54,8 +55,6 @@ public: // コンストラクタ | デストラクタ
 
 public:
 	void Update();		//更新処理
-
-
 
 public: // バラバラ イベント用
 	int DelayFrameForDrop;

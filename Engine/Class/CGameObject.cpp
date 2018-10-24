@@ -75,5 +75,7 @@ void GameObject::g_Render()
 	for(int i = 0; i< pIndex.size(); i++)
 	{
 		pIndex.at(i)->Render();
+		int j = pIndex.size();
+		j = j;
 	}
 }
