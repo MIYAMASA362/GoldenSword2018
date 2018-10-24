@@ -32,7 +32,7 @@
 #include"sound.h"
 
 #ifdef _DEBUG
-#include"Debug_Circle.h"
+//#include"Debug_Circle.h"
 #include"Debug_font.h"
 #endif // !DEBUG
 

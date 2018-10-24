@@ -42,11 +42,15 @@ private:
 	vector<ArmorObject*> pArmor_Index;	//アーマーオブジェクト
 	BodyObject*	pBodyObject;
 	CORE_DISCHARGE_JUDGE_TYPE Type;
+	D3DXVECTOR3 face;
 
 public:
+	bool bHit;
 	ShapeSphere ColShape;
+	ShapeSphere CorrectSphere;			// 補正球
 	CoreObject(Transform* pTransform, Texture* pTexture):CoreObject(pTransform,pTexture,CORE_JUDGE_TYPE_0) {};
-	CoreObject(Transform* pTransform, Texture* pTexture,CORE_DISCHARGE_JUDGE_TYPE Type);
+	CoreObject(Transform* pTransform, Texture* pTexture, CORE_DISCHARGE_JUDGE_TYPE Type);
+	CoreObject(Transform* pTransform, Texture* pTexture, CORE_DISCHARGE_JUDGE_TYPE Type, D3DXVECTOR3 face);
 	~CoreObject();
 
 	void Hit();
@@ -55,6 +59,7 @@ public:
 	void Set_JudgeType(CORE_DISCHARGE_JUDGE_TYPE Type);
 	void Update();
 	void Render();
+	D3DXVECTOR3 GetFace();
 
 	
 

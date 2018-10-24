@@ -3,7 +3,7 @@
 //		Author:HIROMASA IKEDA	DATE:2018/10/19
 //===============================================
 //	変更者 Changed By
-//		Name:	DATE:
+//		Name:Minoda Takamasa	DATE:2018/10/23
 //
 //-----------------------------------------------
 
@@ -25,12 +25,26 @@
 //================================================
 //	列挙型		enum
 //================================================
-
+enum MeshIndex
+{
+	BulletIndex=0,
+	ScrewIndex
+};
 
 //================================================
 //	構造体		struct/typedef
 //================================================
+typedef struct MeshTag
+{
+	LPD3DXMESH pMesh;
+	D3DMATERIAL9* pMeshMaterials;
+	LPDIRECT3DTEXTURE9* pMeshTextures;
+	DWORD dwNumMaterials;
 
+	D3DXVECTOR3 vecPosition;
+	D3DXMATRIXA16 matWorld;
+
+}MeshData;
 
 //================================================
 //	グローバル変数　global
@@ -43,9 +57,10 @@
 void XModel_Initialize();	//初期化
 void XModel_Finalize();		//終了
 
-void XModel_Load(const char* pFileName);		//モデル読み込み
-void XModel_Render();	//描画
-
+void XModel_Load(MeshData *pMesh, LPSTR szXFileName, D3DXVECTOR3* pvecPosition);		//モデル読み込み
+void XModel_Render(MeshData *pMesh);	//描画
+void XModel_Render(MeshData *pMesh, D3DXMATRIXA16 mtx);
+MeshData* GetMeshData(int MeshIndex);  //メッシュデータの取得
 
 
 #endif

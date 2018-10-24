@@ -13,6 +13,7 @@
 #include"Player.h"
 #include"Bullet.h"
 #include"XModel.h"
+#include"Screwdrop.h"
 
 #define MODEL_FILE ()
 
@@ -49,6 +50,7 @@ void Main_Initialize(void)
 
 	CTeamProt_Initialize();
 	Bullet_Initialize();
+	Screwdrop_Init();
 	Player_Initialize();
 	Cube_Initialize();
 
@@ -66,6 +68,7 @@ void Main_UpdateBegin(void)
 {
 	CTeamProt_Update();
 	Bullet_Update();
+	Screwdrop_Update();
 	Player_Update();
 
 }
@@ -80,6 +83,7 @@ void Main_Render(void)
 	CTeamProt_Render();
 	uiSprite.render.Begin(R2D_SPRITE_ROTATE);
 	Bullet_Render();
+	Screwdrop_Render();
 	Player_Render();
 	
 }
