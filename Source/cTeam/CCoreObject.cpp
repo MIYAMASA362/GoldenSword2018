@@ -54,7 +54,7 @@ void CoreObject::Hit()
 {
 	if(this->pArmor_Index.size() > 0)
 	{
-		DischargeArmor( 5.0f, 50.0f);
+		DischargeArmor( 120.0f, 1.0f, D3DXVECTOR3( 1.0f, 0.0f, 0.0f ) );
 	}
 }
 
@@ -104,52 +104,47 @@ void CoreObject::Set_JudgeType(CORE_DISCHARGE_JUDGE_TYPE Type)
 //-------------------------------------
 //	描画
 //-------------------------------------
-void CoreObject::DischargeArmor( float MaxDist, float Weight, float SpeedRatio )
+void CoreObject::DischargeArmor( float Margin, float Weight, D3DXVECTOR3 AddUnitVec, float SpeedRatio ) 
 {
 	for( int i = 0; i < pArmor_Index.size(); i++ )
 	{
-		
-		// そのアーマーとの距離を計算
-		const float SquaredDist = D3DXVec3LengthSq( &( pArmor_Index.at( i )->transform.Position - transform.Position ) );
 		// アーマー破棄イベントまでの遅延フレームを算出
-		// 得たフレーム数が最大値より低ければアーマー破棄を実行
-
 		float DelayFrame;
 
-		if( SquaredDist < MaxDist * MaxDist )
+		float SquaredDist = D3DXVec3LengthSq( &( pArmor_Index.at( i )->transform.Position - transform.Position ) );
+
+		switch (this->Type)
 		{
-			switch (this->Type)
-			{
-			case CORE_JUDGE_TYPE_0:	//距離
-				DelayFrame = SquaredDist * Weight;
-				break;
-			case CORE_JUDGE_TYPE_1:	//範囲
-				DelayFrame = MaxDist * Weight;
-				break;
-			default:
-				//NULL
-				break;
-			}
-
-			const D3DXVECTOR3* pInitSpeed;
-			const ARMOR_DISCHARGING_TYPE Type = pArmor_Index.at(i)->Discharging_Type;
-
-			switch( Type )
-			{
-
-				case FALL:	//ずれて落ちる
-					pInitSpeed = new D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
-					break;
-				case RADIALLY: //放射状に広がる
-					D3DXVECTOR3 Vec = pArmor_Index.at( i )->transform.Position - transform.Position;
-					D3DXVec3Normalize( &Vec, &Vec );
-					Vec *= SpeedRatio;
-					pInitSpeed = new D3DXVECTOR3( Vec );
-					
-			}
-
-			pArmor_Index.at( i )->Break( *pInitSpeed, DelayFrame );
-			this->pArmor_Index.erase( this->pArmor_Index.begin() + i );
+		case CORE_JUDGE_TYPE_0:	//距離
+			DelayFrame = SquaredDist * Weight + Margin;
+			break;
+		case CORE_JUDGE_TYPE_1:	// 子Armor全て一度に
+			DelayFrame = Weight + Margin;
+			break;
+		default:
+			//NULL
+			break;
 		}
+
+		// 速度を指定
+		D3DXVECTOR3* pInitSpeed;
+		const ARMOR_DISCHARGING_TYPE Type = pArmor_Index.at(i)->Discharging_Type;
+
+		switch( Type )
+		{
+
+			case FALL:	//ずれて落ちる
+				pInitSpeed = new D3DXVECTOR3( 0.0f, 0.0f, 0.0f );
+				*pInitSpeed += AddUnitVec;
+				break;
+			case RADIALLY: //放射状に広がる
+				pInitSpeed = new D3DXVECTOR3( pArmor_Index.at( i )->transform.Position - transform.Position );
+				D3DXVec3Normalize( pInitSpeed, pInitSpeed );
+				*pInitSpeed = ( *pInitSpeed + AddUnitVec ) * SpeedRatio;
+					
+		}
+
+		pArmor_Index.at( i )->Break( *pInitSpeed, DelayFrame );
+		this->pArmor_Index.erase( this->pArmor_Index.begin() + i );
 	}
 }

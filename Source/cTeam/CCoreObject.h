@@ -58,7 +58,7 @@ public:
 
 	
 
-	void DischargeArmor( float MaxDistance, float Weight, float SpeedRatio = 1.0f ); // Dist^2 * Weight = DelayFrame
+	void DischargeArmor( float MarginFrame, float WeightToDelay, D3DXVECTOR3 AdditionalUnitVector, float SpeedRatio = 1.0f ); // Dist^2 * Weight = DelayFrame
 
 };
 
