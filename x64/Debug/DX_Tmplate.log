@@ -1,8 +1,0 @@
-﻿  CCoreObject.cpp
-c:\users\kyyr1\documents\___git\source\cteam\ccoreobject.cpp(147): warning C4244: '引数': 'float' から 'unsigned int' への変換です。データが失われる可能性があります。
-  コードを生成中...
-  スキップ中... (関連する変更は検出されませんでした)
-  CTeamProt.cpp
-  CEnemy.cpp
-  DX_Tmplate.vcxproj -> C:\Users\kyyr1\Documents\___git\x64\Debug\DX_Template.exe
-  DX_Tmplate.vcxproj -> C:\Users\kyyr1\Documents\___git\x64\Debug\DX_Template.pdb (Full PDB)
