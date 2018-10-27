@@ -1,0 +1,4 @@
+#  Debugはいらない
+x64/
+Debug/
+.vs/
